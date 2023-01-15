@@ -1,14 +1,34 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\ServiceClient;
 
-class ServiceClient extends Model
+/**
+ * assure la gestion d'un contrat
+ */
+class ServiceClientController extends Controller
 {
-	protected $table = 'service_clients';
+	/**
+	 * consulte les informations d'un contrat en vue d'une éventuelle 
+	 * modification
+	 */
+	public function consulter()
+	{
+		$id = request('id');
+		$contrat = ServiceClient::firstWhere('id', $id);
+		return view('service_contrat.contrat-view', [
+			'contrat' => $contrat,
+		]);
+	}
 
-	protected $fillable = [
-		'id_utilisateur',
-	];
+	/**
+	 * notifier à un contrat ses informations
+	 */
+	public function notifier()
+	{
+		$id = request('id');
+		$contrat = ServiceClient::firstWhere('id', $id);
+		return view('service_contrat.contrat');
+	}
 }

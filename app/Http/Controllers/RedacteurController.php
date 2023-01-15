@@ -1,14 +1,34 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Redacteur;
 
-class Redacteur extends Model
+/**
+ * assure la gestion d'un contrat
+ */
+class RedacteurController extends Controller
 {
-	protected $table = 'redacteurs';
+	/**
+	 * consulte les informations d'un contrat en vue d'une éventuelle 
+	 * modification
+	 */
+	public function consulter()
+	{
+		$id = request('id');
+		$contrat = Redacteur::firstWhere('id', $id);
+		return view('service_contrat.contrat-view', [
+			'contrat' => $contrat,
+		]);
+	}
 
-	protected $fillable = [
-		'id_utilisateur',
-	];
+	/**
+	 * notifier à un contrat ses informations
+	 */
+	public function notifier()
+	{
+		$id = request('id');
+		$contrat = Redacteur::firstWhere('id', $id);
+		return view('service_contrat.contrat');
+	}
 }

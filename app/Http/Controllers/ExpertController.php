@@ -1,15 +1,34 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Expert;
 
-class Expert extends Model
+/**
+ * assure la gestion d'un contrat
+ */
+class ExpertController extends Controller
 {
-	protected $table = 'experts';
+	/**
+	 * consulte les informations d'un contrat en vue d'une éventuelle 
+	 * modification
+	 */
+	public function consulter()
+	{
+		$id = request('id');
+		$contrat = Expert::firstWhere('id', $id);
+		return view('service_contrat.contrat-view', [
+			'contrat' => $contrat,
+		]);
+	}
 
-	protected $fillable = [
-		'id_utilisateur',
-		'domaine'
-	];
+	/**
+	 * notifier à un contrat ses informations
+	 */
+	public function notifier()
+	{
+		$id = request('id');
+		$contrat = Expert::firstWhere('id', $id);
+		return view('service_contrat.contrat');
+	}
 }

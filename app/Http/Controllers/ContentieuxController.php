@@ -1,14 +1,34 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Contentieux;
 
-class Contentieux extends Model
+/**
+ * assure la gestion d'un contentieux
+ */
+class ContentieuxController extends Controller
 {
-	protected $table = 'contentieux';
+	/**
+	 * consulte les informations d'un contentieux en vue d'une éventuelle 
+	 * modification
+	 */
+	public function consulter()
+	{
+		$id = request('id');
+		$contentieux = Contentieux::firstWhere('id', $id);
+		return view('service_contentieux.contentieux-view', [
+			'contentieux' => $contentieux,
+		]);
+	}
 
-	protected $fillable = [
-		'id_utilisateur',
-	];
+	/**
+	 * notifier à un contentieux ses informations
+	 */
+	public function notifier()
+	{
+		$id = request('id');
+		$contentieux = Contentieux::firstWhere('id', $id);
+		return view('service_contentieux.contentieux');
+	}
 }

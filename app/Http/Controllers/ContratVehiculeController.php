@@ -1,19 +1,34 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\ContratVehicule;
 
-class ContratVehicule extends Model
+/**
+ * assure la gestion d'un contrat
+ */
+class ContratVehiculeController extends Controller
 {
-	protected $table = 'contrats_vehicule';
+	/**
+	 * consulte les informations d'un contrat en vue d'une éventuelle 
+	 * modification
+	 */
+	public function consulter()
+	{
+		$id = request('id');
+		$contrat = ContratVehicule::firstWhere('id', $id);
+		return view('service_contrat.contrat-view', [
+			'contrat' => $contrat,
+		]);
+	}
 
-	protected $fillable = [
-		'id_contrat',
-		'type',
-		'date_circulation',
-		'marque',
-		'modele',
-		'cylindree'
-	];
+	/**
+	 * notifier à un contrat ses informations
+	 */
+	public function notifier()
+	{
+		$id = request('id');
+		$contrat = ContratVehicule::firstWhere('id', $id);
+		return view('service_contrat.contrat');
+	}
 }

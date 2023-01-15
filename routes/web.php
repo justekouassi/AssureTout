@@ -36,9 +36,9 @@ Route::get('/change-password', function () {
 });
 Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 
-Route::group([
-	'middleware' => 'auth',
-], function () {
+// Route::group([
+// 	'middleware' => 'auth',
+// ], function () {
 
 	/* dashboard administrateur */
 
@@ -55,6 +55,9 @@ Route::group([
 
 	/* opérations de l'administrateur sur le service contentieux */
 
+	Route::get('/admin/contentieux', function () {
+		return view('administrateurs.contentieux.contentieux');
+	});
 	Route::get('/contentieux/create', function () {
 		return view('contentieux.contentieux-create');
 	});
@@ -65,6 +68,9 @@ Route::group([
 
 	/* opérations de l'administrateur sur les courtiers */
 
+	Route::get('/admin/courtiers', function () {
+		return view('administrateurs.courtiers.courtiers');
+	});
 	Route::get('/courtiers/create', function () {
 		return view('courtiers.courtier-create');
 	});
@@ -75,6 +81,9 @@ Route::group([
 
 	/* opérations de l'administrateur sur les experts */
 
+	Route::get('/admin/experts', function () {
+		return view('administrateurs.experts.experts');
+	});
 	Route::get('/experts/create', function () {
 		return view('experts.expert-create');
 	});
@@ -85,6 +94,9 @@ Route::group([
 
 	/* opérations de l'administrateur sur les rédacteurs */
 
+	Route::get('/admin/redacteurs', function () {
+		return view('administrateurs.redacteurs.redacteurs');
+	});
 	Route::get('/redacteurs/create', function () {
 		return view('redacteurs.redacteur-create');
 	});
@@ -95,6 +107,9 @@ Route::group([
 
 	/* opérations de l'administrateur sur le service clients */
 
+	Route::get('/admin/service-clients', function () {
+		return view('administrateurs.service_clients.service-clients');
+	});
 	Route::get('/service-clients/create', function () {
 		return view('service-clients.service-client-create');
 	});
@@ -109,12 +124,14 @@ Route::group([
 		return view('service_contentieux.contentieux');
 	});
 	Route::get('/contentieux/{id}', [ContentieuxController::class, 'consulter']);
-	Route::post('/contentieux/{id}', [ContentieuxController::class, 'notifier']);
 
 	/* opérations des courtiers */
 
 	Route::get('/courtier', function () {
 		return view('courtiers.courtier');
+	});
+	Route::get('/courtier/sinistres', function () {
+		return view('sinistres.sinistres');
 	});
 
 	/* opérations des rédacteurs */
@@ -136,7 +153,6 @@ Route::group([
 		return view('service_clients.clients');
 	});
 	Route::get('/clients/{id}', [ClientController::class, 'consulter']);
-	Route::post('/clients/{id}', [ClientController::class, 'notifier']);
 	Route::get('/offres', function () {
 		return view('service_clients.offres');
 	});
@@ -150,4 +166,4 @@ Route::group([
 	Route::get('/sinistres/{id}/edit', [SinistreController::class, 'consulter']);
 	Route::post('/sinistres/{id}/edit', [SinistreController::class, 'modifier']);
 	Route::get('/sinistres/{id}/delete', [SinistreController::class, 'supprimer']);
-});
+// });

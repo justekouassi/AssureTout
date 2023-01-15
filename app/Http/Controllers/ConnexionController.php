@@ -21,64 +21,23 @@ class ConnexionController extends Controller
 			'nom' => ['required', 'min:3'],
 			'prenoms' => ['required', 'min:3'],
 			'email' => ['required', 'email'],
-			'datenaiss' => [],
-			'sexe' => [],
-			'statut' => [],
-			'telephone' => [],
 			'password' => ['required'],
+			'telephone' => [],
 		]);
 
-		// $user = Utilisateur::where('email', request('email'))->first();
-		// if ($user === null) {
-
-		// }
 		Utilisateur::create([
-			"nom" => request("nom"),
-			"email" => request("email"),
-			"motdepasse" => bcrypt(request("password")),
+			'nom' => request('nom'),
+			'prenoms' => request('prenoms'),
+			'email' => request('email'),
+			'motdepasse' => bcrypt(request('password')),
+			'telephone' => request('telephone'),
 		]);
 
-		// return back()->withInput()->withErrors([
-		// 	'email' => "Cet utilisateur est déjà inscrit",
-		// ]);
-
-		$user = [
-			"nom" => request("nom"),
-			"email" => request("email"),
-		];
-
-		return view('test.bar', [
-			'user' => $user,
+		return back()->withInput()->withErrors([
+			'email' => 'Cet utilisateur est déjà inscrit',
 		]);
 	}
 
-	/**
-	 * affiche la vue permettant au nouvel inscrit de confirmer son email et l'autorise à se connecter avec cet email
-	 */
-	public function attenteConfirmation()
-	{
-		$confirm_key = request("confirm_key");
-		$nom = request("nom");
-		$user = Utilisateur::where('nom', $nom)->where('confirm_key', $confirm_key)->first();
-		return view('test.confirmed', [
-			'user' => $user,
-		]);
-	}
-
-	/**
-	 * confirme l'email d'un utilisateur et l'autorise à se connecter avec cet email
-	 * @return accueil la page d'accueil
-	 */
-	public function confirmation()
-	{
-		$nom = request("nom");
-		$user = Utilisateur::where('nom', $nom)->first();
-		$user->update([
-			"confirmed" => 1,
-		]);
-
-		return redirect('/');
-	}
 
 	/**
 	 * assure la connexion d'un utilisateur
@@ -93,18 +52,12 @@ class ConnexionController extends Controller
 		$result = auth()->attempt([
 			'email' => request('email'),
 			'password' => request('password'),
-			'confirmed' => 1,
 		]);
-		if (request('confirmed') == 0) {
-			return back()->withInput()->withErrors([
-				'email' => "Vous n'avez pas encore confirmé votre compte",
-			]);
-		}
 		if ($result) {
 			return redirect('/');
 		}
 		return back()->withInput()->withErrors([
-			'email' => "Vos identifiants sont incorrects.",
+			'email' => 'Vos identifiants sont incorrects.',
 		]);
 	}
 
@@ -139,10 +92,10 @@ class ConnexionController extends Controller
 			'password_confirmation' => ['required'],
 		]);
 
-		$email = request("email");
+		$email = request('email');
 		$utilisateur = Utilisateur::where('email', $email)->first();
 		$utilisateur->update([
-			"motdepasse" => bcrypt(request("password")),
+			'motdepasse' => bcrypt(request('password')),
 		]);
 
 		return redirect('/');
