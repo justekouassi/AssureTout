@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ReportedSinistre extends Mailable
+class InfosClient extends Mailable
 {
 	use Queueable, SerializesModels;
 
@@ -28,8 +28,7 @@ class ReportedSinistre extends Mailable
 	 */
 	public function build()
 	{
-		return $this->subject('Signalement de question')
-		->view('emails.reported_question');
-		// ->attach('images/jkwiz-noir.png');
+		return $this->subject('Informations du client')
+		->view('emails.infos_client');
 	}
 }

@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contribution extends Model
+class Redacteur extends Model
 {
-	protected $table = "contributions";
+	protected $table = 'redacteurs';
 
 	protected $fillable = [
-		'id_question',
 		'id_utilisateur',
 	];
 }

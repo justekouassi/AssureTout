@@ -3,92 +3,81 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sinistre;
-use App\Mail\ReportedSinistre;
+use App\Mail\SouscriptionContrat;
 use Illuminate\Support\Facades\Mail;
 
 /**
- * assure la gestion d'une sinistre
+ * assure la gestion d'un sinistre
  */
 class SinistreController extends Controller
 {
 	/**
-	 * ajoute une sinistre dans la base de données
+	 * ajoute un sinistre dans la base de données
 	 */
 	public function ajouter()
 	{
 		Sinistre::validate();
 		Sinistre::create([
-			"date_declaration" => request("date_declaration"),
-			"montant" => request("montant"),
-			"statut" => request("statut"),
-			"scan" => request("scan"),
-			"transcription" => request("transcription"),
+			'date_declaration' => request('date_declaration'),
+			'montant' => request('montant'),
+			'statut' => request('statut'),
+			'scan' => request('scan'),
+			'contestation' => request('contestation'),
+			'transcription' => request('transcription'),
 		]);
 		return back();
 	}
 
 	/**
-	 * affiche toutes les informations concernant une sinistre
-	 */
-	public function afficher()
-	{
-		$id = request("id");
-		$sinistre = Sinistre::firstWhere('id', $id);
-		return view("view_sinistre", [
-			'sinistre' => $sinistre,
-		]);
-	}
-
-	/**
-	 * consulte les informations d'une sinistre en vue d'une éventuelle
+	 * consulte les informations d'un sinistre en vue d'une éventuelle
 	 * modification
 	 */
 	public function consulter()
 	{
-		$id = request("id");
+		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
-		return view("edit_sinistre", [
+		return view('sinistres.sinistre-edit', [
 			'sinistre' => $sinistre,
 		]);
 	}
 
 	/**
-	 * modifie les attributs d'une sinistre
+	 * modifie les attributs d'un sinistre
 	 */
 	public function modifier()
 	{
 		Sinistre::validate();
-
-		$id = request("id");
+		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
 		$sinistre->update([
-			"sinistre" => request("sinistre"),
-			"reponse" => request("reponse"),
-			"categorie" => request("categorie"),
-			"explication" => request("explication"),
-			"wiki" => request("wiki"),
-			"media" => request("media"),
+			'date_declaration' => request('date_declaration'),
+			'montant' => request('montant'),
+			'statut' => request('statut'),
+			'scan' => request('scan'),
+			'contestation' => request('contestation'),
+			'transcription' => request('transcription'),
 		]);
-		return redirect('/browse');
+		return back();
 	}
 
 	/**
-	 * signale une sinistre
+	 * contracte un sinistre
 	 */
-	public function signaler()
+	public function contracter()
 	{
-		$id = request("id");
+		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
-		Mail::to("kjuste02@gmail.com")->send(new ReportedSinistre($sinistre));
+		Mail::to('kjuste02@outlook.fr')->send(new SouscriptionContrat($sinistre));
+		return view('sinistres.sinistres');
 	}
 
 	/**
-	 * supprime une sinistre
+	 * supprime un sinistre
 	 */
 	public function supprimer()
 	{
-		$id = request("id");
+		$id = request('id');
 		Sinistre::firstWhere('id', $id)->delete();
-		return redirect('/browse');
+		return back();
 	}
 }

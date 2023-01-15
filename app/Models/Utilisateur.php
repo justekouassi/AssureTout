@@ -11,17 +11,13 @@ class Utilisateur extends Model implements Authenticatable
 {
 	use BasicAuthenticatable, HasApiTokens;
 
-	protected $table = "utilisateurs";
+	protected $table = 'utilisateurs';
 
 	protected $fillable = [
 		'nom',
 		'prenoms',
 		'email',
 		'motdepasse',
-		'datenaiss',
-		'sexe',
-		'statut',
-		'adresse',
 		'telephone',
 		'role',
 	];

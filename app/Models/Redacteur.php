@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Niveau extends Model
+class Redacteur extends Model
 {
-	protected $table = "niveaux";
+	protected $table = 'redacteurs';
 
 	protected $fillable = [
-		'lib_niveau',
+		'id_utilisateur',
 	];
 }
