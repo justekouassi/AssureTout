@@ -70,9 +70,9 @@
 	<script src="/vendor/jquery.min.js"></script>
 	<script src="/vendor/bootstrap.bundle.min.js"></script>
 	<!-- Core plugin JavaScript-->
-	<script src="/vendor/jquery.easing.min.js"></script>
+	<script src="/vendor/jquery.easing.js"></script>
 	<!-- Custom scripts for all pages-->
-	<script src="/js/sb-admin-2.min.js"></script>
+	<script src="/js/sb-admin-2.js"></script>
 
 </body>
 

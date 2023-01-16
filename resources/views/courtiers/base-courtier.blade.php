@@ -14,7 +14,7 @@
 	<!-- Custom styles for this template -->
 	<link href="/css/sb-admin-2.min.css" rel="stylesheet">
 	<!-- Custom styles for this page -->
-	<link href="/vendor/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="/vendor/dataTables.bootstrap4.css" rel="stylesheet">
 
 	<title>@yield('title') | {{ env('APP_NAME') }}</title>
 </head>
@@ -261,12 +261,12 @@
 	<script src="/vendor/jquery.min.js"></script>
 	<script src="/vendor/bootstrap.bundle.min.js"></script>
 	<!-- Core plugin JavaScript-->
-	<script src="/vendor/jquery.easing.min.js"></script>
+	<script src="/vendor/jquery.easing.js"></script>
 	<!-- Custom scripts for all pages-->
-	<script src="/js/sb-admin-2.min.js"></script>
+	<script src="/js/sb-admin-2.js"></script>
 	<!-- Page level plugins -->
 	<script src="/vendor/jquery.dataTables.min.js"></script>
-	<script src="/vendor/dataTables.bootstrap4.min.js"></script>
+	<script src="/vendor/dataTables.bootstrap4.js"></script>
 	<!-- Page level custom scripts -->
 	<script src="/js/datatables-demo.js"></script>
 

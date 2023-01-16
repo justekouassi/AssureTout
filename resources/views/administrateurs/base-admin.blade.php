@@ -7,14 +7,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Custom fonts for this template -->
-	<link href="/vendor/all.min.css" rel="stylesheet">
+	<link href="/css/all.min.css" rel="stylesheet">
 	<link
 		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 		rel="stylesheet">
 	<!-- Custom styles for this template -->
 	<link href="/css/sb-admin-2.min.css" rel="stylesheet">
-	<!-- Custom styles for this page -->
-	<link href="/vendor/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<!-- Jquery datatables css -->
+	<link href="/css/dataTables.bootstrap4.css" rel="stylesheet">
 
 	<title>@yield('title') | {{ env('APP_NAME') }}</title>
 </head>
@@ -38,10 +38,11 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item">
-				<a class="nav-link" href="index.html">
+			<li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+				<a class="nav-link" href="/admin">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
-					<span>Dashboard</span></a>
+					<span>Dashboard</span>
+				</a>
 			</li>
 
 			<!-- Divider -->
@@ -52,35 +53,35 @@
 			</div>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item active">
+			<li class="nav-item {{ request()->is('admin/redacteurs') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/redacteurs">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Rédacteurs</span>
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
-			<li class="nav-item active">
+			<li class="nav-item {{ request()->is('admin/experts') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/experts">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Experts</span>
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
-			<li class="nav-item active">
+			<li class="nav-item {{ request()->is('admin/courtiers') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/courtiers">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Courtiers</span>
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
-			<li class="nav-item active">
+			<li class="nav-item {{ request()->is('admin/service-clients') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/service-clients">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Service clients</span>
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
-			<li class="nav-item active">
+			<li class="nav-item {{ request()->is('admin/contentieux') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/contentieux">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Service contentieux</span>
@@ -95,7 +96,7 @@
 			</div>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item active">
+			<li class="nav-item {{ request()->is('admin/clients') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/clients">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Clients</span>
@@ -122,16 +123,16 @@
 				<nav class="navbar navbar-expand navbar-light topbar static-top mb-4 bg-white shadow">
 
 					<!-- Sidebar Toggle (Topbar) -->
-					<form class="form-inline">
+					<div class="form-inline">
 						<button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
 							<i class="fa fa-bars"></i>
 						</button>
-					</form>
+					</div>
 
 					<!-- Topbar Search -->
 					<form class="d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search my-2 mr-auto">
 						<div class="input-group">
-							<input class="form-control bg-light small border-0" type="text" aria-label="Search"
+							<input class="form-control bg-light small border-0" type="search" aria-label="Search"
 								aria-describedby="basic-addon2" placeholder="Recherche...">
 							<div class="input-group-append">
 								<button class="btn btn-primary" type="button">
@@ -265,7 +266,7 @@
 		<i class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
+	<!-- Logout Modal -->
 	<div class="modal fade" id="logoutModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
 		tabindex="-1">
 		<div class="modal-dialog" role="document">
@@ -279,24 +280,37 @@
 				<div class="modal-body">Cliquez sur le bouton "Se déconnecter" si vous voulez mettre fin à votre session</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" data-dismiss="modal" type="button">Annuler</button>
-					<a class="btn btn-primary" href="login.html">Se déconnecter</a>
+					<a class="btn btn-primary" href="/login">Se déconnecter</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="/vendor/jquery.min.js"></script>
-	<script src="/vendor/bootstrap.bundle.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
 	<!-- Core plugin JavaScript-->
-	<script src="/vendor/jquery.easing.min.js"></script>
-	<!-- Custom scripts for all pages-->
-	<script src="/js/sb-admin-2.min.js"></script>
+	<script src="/js/jquery.easing.js"></script>
+	<!-- Toggle sidebar -->
+	<script src="/js/sb-admin-2.js"></script>
+	<!-- Jquery datatables -->
+	<script src="/js/jquery.dataTables.min.js"></script>
+	<script src="/js/dataTables.bootstrap4.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.table').DataTable({
+				language: {
+					url: "{{ asset('/js/datatable-french.json') }}"
+				},
+			});
+		});
+	</script>
 	<!-- Page level plugins -->
-	<script src="/vendor/jquery.dataTables.min.js"></script>
-	<script src="/vendor/dataTables.bootstrap4.min.js"></script>
+	<script src="/js/Chart.min.js"></script>
+
 	<!-- Page level custom scripts -->
-	<script src="/js/datatables-demo.js"></script>
+	<script src="/js/chart-area-demo.js"></script>
+	<script src="/js/chart-pie-demo.js"></script>
 
 </body>
 

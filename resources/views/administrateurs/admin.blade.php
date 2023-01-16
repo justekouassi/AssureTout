@@ -4,13 +4,12 @@
 
 @section('content')
 
-	<!-- Begin Page Content -->
 	<div class="container-fluid">
 
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-			<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="#">
+			<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="javascript:void(0)">
 				<i class="fas fa-download fa-sm text-white-50"></i> Générer rapport
 			</a>
 		</div>
@@ -157,16 +156,16 @@
 					<div class="card-header d-flex align-items-center justify-content-between flex-row py-3">
 						<h6 class="font-weight-bold text-primary m-0">Evolution des clients</h6>
 						<div class="dropdown no-arrow">
-							<a class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" href="#" role="button"
+							<a class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" href="javascript:void(0)" role="button"
 								aria-haspopup="true" aria-expanded="false">
 								<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right animated--fade-in shadow" aria-labelledby="dropdownMenuLink">
 								<div class="dropdown-header">Dropdown Header:</div>
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="javascript:void(0)">Action</a>
+								<a class="dropdown-item" href="javascript:void(0)">Another action</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Something else here</a>
+								<a class="dropdown-item" href="javascript:void(0)">Something else here</a>
 							</div>
 						</div>
 					</div>
@@ -186,16 +185,16 @@
 					<div class="card-header d-flex align-items-center justify-content-between flex-row py-3">
 						<h6 class="font-weight-bold text-primary m-0">Nombre d'employés par service</h6>
 						<div class="dropdown no-arrow">
-							<a class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" href="#" role="button"
+							<a class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" href="javascript:void(0)" role="button"
 								aria-haspopup="true" aria-expanded="false">
 								<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right animated--fade-in shadow" aria-labelledby="dropdownMenuLink">
 								<div class="dropdown-header">Dropdown Header:</div>
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="javascript:void(0)">Action</a>
+								<a class="dropdown-item" href="javascript:void(0)">Another action</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Something else here</a>
+								<a class="dropdown-item" href="javascript:void(0)">Something else here</a>
 							</div>
 						</div>
 					</div>
@@ -221,6 +220,5 @@
 		</div>
 
 	</div>
-	<!-- /.container-fluid -->
 
 @endsection

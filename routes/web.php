@@ -118,6 +118,19 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 	Route::post('/service-clients/{id}/edit', [ServiceClientController::class, 'modifier']);
 	Route::get('/service-clients/{id}/delete', [ServiceClientController::class, 'supprimer']);
 
+	/* opérations de l'administrateur sur les clients */
+
+	Route::get('/admin/clients', function () {
+		return view('administrateurs.clients.clients');
+	});
+	Route::get('/clients/create', function () {
+		return view('clients.client-create');
+	});
+	Route::post('/clients/create', [ServiceClientController::class, 'ajouter']);
+	Route::get('/clients/{id}/edit', [ServiceClientController::class, 'consulter']);
+	Route::post('/clients/{id}/edit', [ServiceClientController::class, 'modifier']);
+	Route::get('/clients/{id}/delete', [ServiceClientController::class, 'supprimer']);
+
 	/* opérations du service contentieux */
 
 	Route::get('/contentieux', function () {

@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="title" content="AssureTout | Intranet" />
-	<meta name="description" content="AssureTout est une compagnie d'assurance en Côte d'Ivoire" />
+	<meta name="description" content="AssureTout est une compagnie d'assurance en Côte d'Ivoire"/>
 	<meta name="robots" content="index, follow" />
 
 	<!-- Canonical -->
@@ -20,8 +20,7 @@
 	<meta property="og:image:width" content="400" />
 	<meta property="og:image:height" content="400" />
 	<meta property="og:url" content="https://assuretout.justekouassi.com" />
-	<meta property="og:description"
-		content="AssureTout est une API qui fournit plus de 30.000 questions et réponses de culture générale." />
+	<meta property="og:description" content="AssureTout est une compagnie d'assurance en Côte d'Ivoire" />
 
 	<!-- Favicon --->
 	<link href="/images/favicon_io/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
