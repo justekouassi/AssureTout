@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expert;
+use App\Models\Utilisateur;
 
 /**
  * assure la gestion d'un contrat
@@ -10,25 +11,68 @@ use App\Models\Expert;
 class ExpertController extends Controller
 {
 	/**
-	 * consulte les informations d'un contrat en vue d'une éventuelle 
-	 * modification
+	 * assure l'inscription d'un utilisateur
+	 */
+	public function ajouter()
+	{
+		request()->validate([
+			'nom' => ['required', 'min:3'],
+			'prenoms' => ['required', 'min:3'],
+			'email' => ['required', 'email'],
+			'motdepasse' => ['required'],
+			'telephone' => [],
+		]);
+
+		Utilisateur::create([
+			'nom' => request('nom'),
+			'prenoms' => request('prenoms'),
+			'email' => request('email'),
+			'motdepasse' => bcrypt(request('motdepasse')),
+			'telephone' => request('telephone'),
+			'role' => 'Expert',
+		]);
+
+		return back()->withInput()->withErrors([
+			'email' => 'Cet expert est déjà inscrit',
+		]);
+	}
+	/**
+	 * consulte les informations d'un expert
 	 */
 	public function consulter()
 	{
 		$id = request('id');
-		$contrat = Expert::firstWhere('id', $id);
-		return view('service_contrat.contrat-view', [
-			'contrat' => $contrat,
+		$expert = Expert::firstWhere('id', $id);
+		return view('administrateurs.experts.expert-edit', [
+			'expert' => $expert,
 		]);
 	}
 
 	/**
-	 * notifier à un contrat ses informations
+	 * modifie les attributs d'un expert
 	 */
-	public function notifier()
+	public function modifier()
+	{
+		Expert::validate();
+		$id = request('id');
+		$expert = Expert::firstWhere('id', $id);
+		$expert->update([
+			'nom' => request('nom'),
+			'prenoms' => request('prenoms'),
+			'email' => request('email'),
+			'motdepasse' => bcrypt(request('motdepasse')),
+			'telephone' => request('telephone'),
+		]);
+		return back();
+	}
+
+	/**
+	 * supprime un expert
+	 */
+	public function supprimer()
 	{
 		$id = request('id');
-		$contrat = Expert::firstWhere('id', $id);
-		return view('service_contrat.contrat');
+		Expert::firstWhere('id', $id)->delete();
+		return back();
 	}
 }

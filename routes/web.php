@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\ContentieuxController;
@@ -42,9 +43,7 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 
 	/* dashboard administrateur */
 
-	Route::get('/admin', function () {
-		return view('administrateurs.admin');
-	})->name('admin');
+	Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 
 	/* inscription employés */
 
@@ -58,78 +57,78 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 	Route::get('/admin/contentieux', function () {
 		return view('administrateurs.contentieux.contentieux');
 	});
-	Route::get('/contentieux/create', function () {
-		return view('contentieux.contentieux-create');
+	Route::get('/admin/contentieux/create', function () {
+		return view('administrateurs.contentieux.contentieux-create');
 	});
-	Route::post('/contentieux/create', [ContentieuxController::class, 'ajouter']);
-	Route::get('/contentieux/{id}/edit', [ContentieuxController::class, 'consulter']);
-	Route::post('/contentieux/{id}/edit', [ContentieuxController::class, 'modifier']);
-	Route::get('/contentieux/{id}/delete', [ContentieuxController::class, 'supprimer']);
+	Route::post('/admin/contentieux/create', [ContentieuxController::class, 'ajouter']);
+	Route::get('/admin/contentieux/{id}/edit', [ContentieuxController::class, 'consulter']);
+	Route::post('/admin/contentieux/{id}/edit', [ContentieuxController::class, 'modifier']);
+	Route::get('/admin/contentieux/{id}/delete', [ContentieuxController::class, 'supprimer']);
 
 	/* opérations de l'administrateur sur les courtiers */
 
 	Route::get('/admin/courtiers', function () {
 		return view('administrateurs.courtiers.courtiers');
 	});
-	Route::get('/courtiers/create', function () {
-		return view('courtiers.courtier-create');
+	Route::get('/admin/courtiers/create', function () {
+		return view('administrateurs.courtiers.courtier-create');
 	});
-	Route::post('/courtiers/create', [CourtierController::class, 'ajouter']);
-	Route::get('/courtiers/{id}/edit', [CourtierController::class, 'consulter']);
-	Route::post('/courtiers/{id}/edit', [CourtierController::class, 'modifier']);
-	Route::get('/courtiers/{id}/delete', [CourtierController::class, 'supprimer']);
+	Route::post('/admin/courtiers/create', [CourtierController::class, 'ajouter']);
+	Route::get('/admin/courtiers/{id}/edit', [CourtierController::class, 'consulter']);
+	Route::post('/admin/courtiers/{id}/edit', [CourtierController::class, 'modifier']);
+	Route::get('/admin/courtiers/{id}/delete', [CourtierController::class, 'supprimer']);
 
 	/* opérations de l'administrateur sur les experts */
 
 	Route::get('/admin/experts', function () {
 		return view('administrateurs.experts.experts');
 	});
-	Route::get('/experts/create', function () {
-		return view('experts.expert-create');
+	Route::get('/admin/experts/create', function () {
+		return view('administrateurs.experts.expert-create');
 	});
-	Route::post('/experts/create', [ExpertController::class, 'ajouter']);
-	Route::get('/experts/{id}/edit', [ExpertController::class, 'consulter']);
-	Route::post('/experts/{id}/edit', [ExpertController::class, 'modifier']);
-	Route::get('/experts/{id}/delete', [ExpertController::class, 'supprimer']);
+	Route::post('/admin/experts/create', [ExpertController::class, 'ajouter']);
+	Route::get('/admin/experts/{id}/edit', [ExpertController::class, 'consulter']);
+	Route::post('/admin/experts/{id}/edit', [ExpertController::class, 'modifier']);
+	Route::get('/admin/experts/{id}/delete', [ExpertController::class, 'supprimer']);
 
 	/* opérations de l'administrateur sur les rédacteurs */
 
 	Route::get('/admin/redacteurs', function () {
 		return view('administrateurs.redacteurs.redacteurs');
 	});
-	Route::get('/redacteurs/create', function () {
-		return view('redacteurs.redacteur-create');
+	Route::get('/admin/redacteurs/create', function () {
+		return view('administrateurs.redacteurs.redacteur-create');
 	});
-	Route::post('/redacteurs/create', [RedacteurController::class, 'ajouter']);
-	Route::get('/redacteurs/{id}/edit', [RedacteurController::class, 'consulter']);
-	Route::post('/redacteurs/{id}/edit', [RedacteurController::class, 'modifier']);
-	Route::get('/redacteurs/{id}/delete', [RedacteurController::class, 'supprimer']);
+	Route::post('/admin/redacteurs/create', [RedacteurController::class, 'ajouter']);
+	Route::get('/admin/redacteurs/{id}/edit', [RedacteurController::class, 'consulter']);
+	Route::post('/admin/redacteurs/{id}/edit', [RedacteurController::class, 'modifier']);
+	Route::get('/admin/redacteurs/{id}/delete', [RedacteurController::class, 'supprimer']);
 
 	/* opérations de l'administrateur sur le service clients */
 
 	Route::get('/admin/service-clients', function () {
 		return view('administrateurs.service_clients.service-clients');
 	});
-	Route::get('/service-clients/create', function () {
-		return view('service-clients.service-client-create');
+	Route::get('/admin/service-clients/create', function () {
+		return view('administrateurs.service-clients.service-client-create');
 	});
-	Route::post('/service-clients/create', [ServiceClientController::class, 'ajouter']);
-	Route::get('/service-clients/{id}/edit', [ServiceClientController::class, 'consulter']);
-	Route::post('/service-clients/{id}/edit', [ServiceClientController::class, 'modifier']);
-	Route::get('/service-clients/{id}/delete', [ServiceClientController::class, 'supprimer']);
+	Route::post('/admin/service-clients/create', [ServiceClientController::class, 'ajouter']);
+	Route::get('/admin/service-clients/{id}/edit', [ServiceClientController::class, 'consulter']);
+	Route::post('/admin/service-clients/{id}/edit', [ServiceClientController::class, 'modifier']);
+	Route::get('/admin/service-clients/{id}/delete', [ServiceClientController::class, 'supprimer']);
 
 	/* opérations de l'administrateur sur les clients */
 
 	Route::get('/admin/clients', function () {
 		return view('administrateurs.clients.clients');
 	});
-	Route::get('/clients/create', function () {
-		return view('clients.client-create');
+	Route::get('/admin/clients/create', function () {
+		return view('administrateurs.clients.client-create');
 	});
-	Route::post('/clients/create', [ServiceClientController::class, 'ajouter']);
-	Route::get('/clients/{id}/edit', [ServiceClientController::class, 'consulter']);
-	Route::post('/clients/{id}/edit', [ServiceClientController::class, 'modifier']);
-	Route::get('/clients/{id}/delete', [ServiceClientController::class, 'supprimer']);
+	Route::post('/admin/clients/create', [ServiceClientController::class, 'ajouter']);
+	Route::get('/admin/clients/{id}/edit', [ServiceClientController::class, 'consulter']);
+	Route::post('/admin/clients/{id}/edit', [ServiceClientController::class, 'modifier']);
+	Route::get('/admin/clients/{id}/delete', [ServiceClientController::class, 'supprimer']);
 
 	/* opérations du service contentieux */
 

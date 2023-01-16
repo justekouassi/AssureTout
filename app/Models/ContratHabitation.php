@@ -16,4 +16,6 @@ class ContratHabitation extends Model
 		'surface',
 		'dependance'
 	];
+
+	public $timestamps = false;
 }

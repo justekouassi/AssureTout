@@ -12,4 +12,6 @@ class Expert extends Model
 		'id_utilisateur',
 		'domaine'
 	];
+
+	public $timestamps = false;
 }

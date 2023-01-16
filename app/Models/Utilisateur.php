@@ -22,6 +22,8 @@ class Utilisateur extends Model implements Authenticatable
 		'role',
 	];
 
+	public $timestamps = false;
+
 	public function getAuthPassword()
 	{
 		return $this->motdepasse;

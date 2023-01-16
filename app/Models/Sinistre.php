@@ -17,6 +17,8 @@ class Sinistre extends Model
 		'transcription',
 	];
 
+	public $timestamps = false;
+
 	public static function validate()
 	{
 		request()->validate([

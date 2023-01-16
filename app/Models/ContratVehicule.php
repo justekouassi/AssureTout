@@ -16,4 +16,6 @@ class ContratVehicule extends Model
 		'modele',
 		'cylindree'
 	];
+
+	public $timestamps = false;
 }

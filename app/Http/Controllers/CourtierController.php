@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Courtier;
+use App\Models\Utilisateur;
 
 /**
  * assure la gestion d'un contrat
@@ -10,25 +11,68 @@ use App\Models\Courtier;
 class CourtierController extends Controller
 {
 	/**
-	 * consulte les informations d'un contrat en vue d'une éventuelle 
-	 * modification
+	 * assure l'inscription d'un utilisateur
+	 */
+	public function ajouter()
+	{
+		request()->validate([
+			'nom' => ['required', 'min:3'],
+			'prenoms' => ['required', 'min:3'],
+			'email' => ['required', 'email'],
+			'motdepasse' => ['required'],
+			'telephone' => [],
+		]);
+
+		Utilisateur::create([
+			'nom' => request('nom'),
+			'prenoms' => request('prenoms'),
+			'email' => request('email'),
+			'motdepasse' => bcrypt(request('motdepasse')),
+			'telephone' => request('telephone'),
+			'role' => 'Courtier',
+		]);
+
+		return back()->withInput()->withErrors([
+			'email' => 'Cet courtier est déjà inscrit',
+		]);
+	}
+	/**
+	 * consulte les informations d'un courtier
 	 */
 	public function consulter()
 	{
 		$id = request('id');
-		$contrat = Courtier::firstWhere('id', $id);
-		return view('service_contrat.contrat-view', [
-			'contrat' => $contrat,
+		$courtier = Courtier::firstWhere('id', $id);
+		return view('administrateurs.courtiers.courtier-edit', [
+			'courtier' => $courtier,
 		]);
 	}
 
 	/**
-	 * notifier à un contrat ses informations
+	 * modifie les attributs d'un courtier
 	 */
-	public function notifier()
+	public function modifier()
+	{
+		Courtier::validate();
+		$id = request('id');
+		$courtier = Courtier::firstWhere('id', $id);
+		$courtier->update([
+			'nom' => request('nom'),
+			'prenoms' => request('prenoms'),
+			'email' => request('email'),
+			'motdepasse' => bcrypt(request('motdepasse')),
+			'telephone' => request('telephone'),
+		]);
+		return back();
+	}
+
+	/**
+	 * supprime un courtier
+	 */
+	public function supprimer()
 	{
 		$id = request('id');
-		$contrat = Courtier::firstWhere('id', $id);
-		return view('service_contrat.contrat');
+		Courtier::firstWhere('id', $id)->delete();
+		return back();
 	}
 }

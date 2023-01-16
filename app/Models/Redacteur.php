@@ -11,4 +11,6 @@ class Redacteur extends Model
 	protected $fillable = [
 		'id_utilisateur',
 	];
+
+	public $timestamps = false;
 }

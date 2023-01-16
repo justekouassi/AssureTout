@@ -12,34 +12,6 @@ use Illuminate\Support\Facades\Mail;
 class ConnexionController extends Controller
 {
 	/**
-	 * assure l'inscription d'un utilisateur
-	 * @return index la page de connexion
-	 */
-	public function inscription()
-	{
-		request()->validate([
-			'nom' => ['required', 'min:3'],
-			'prenoms' => ['required', 'min:3'],
-			'email' => ['required', 'email'],
-			'password' => ['required'],
-			'telephone' => [],
-		]);
-
-		Utilisateur::create([
-			'nom' => request('nom'),
-			'prenoms' => request('prenoms'),
-			'email' => request('email'),
-			'motdepasse' => bcrypt(request('password')),
-			'telephone' => request('telephone'),
-		]);
-
-		return back()->withInput()->withErrors([
-			'email' => 'Cet utilisateur est déjà inscrit',
-		]);
-	}
-
-
-	/**
 	 * assure la connexion d'un utilisateur
 	 * @return accueil la page d'accueil
 	 */

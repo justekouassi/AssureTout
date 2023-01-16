@@ -11,4 +11,6 @@ class Contentieux extends Model
 	protected $fillable = [
 		'id_utilisateur',
 	];
+
+	public $timestamps = false;
 }

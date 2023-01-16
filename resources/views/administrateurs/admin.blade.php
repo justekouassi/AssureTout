@@ -28,7 +28,7 @@
 										Rédacteurs
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">40</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800" id="redacteurs">{{ $redacteurs->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -49,7 +49,7 @@
 										Experts
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">21</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800" id="experts">{{ $experts->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -70,7 +70,7 @@
 										Courtiers
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">18</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800" id="courtiers">{{ $courtiers->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -91,7 +91,7 @@
 										Service clientèle
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">20</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800" id="service-clients">{{ $service_clients->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -112,7 +112,7 @@
 										Service contentieux
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">10</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800" id="contentieux">{{ $contentieux->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -124,16 +124,16 @@
 
 			<!-- Pending Requests Card Example -->
 			<div class="col-xl-3 col-md-6 mb-4">
-				<div class="card border-left-warning h-100 py-2 shadow">
+				<div class="card border-left-info h-100 py-2 shadow">
 					<div class="card-body">
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
-								<div class="font-weight-bold text-warning text-uppercase mb-1 text-xs">
+								<div class="font-weight-bold text-info text-uppercase mb-1 text-xs">
 									<a href="/admin/clients" style="color: unset; text-decoration: none">
 										Clients
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">100</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800" id="clients">{{ $clients->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -205,13 +205,19 @@
 						</div>
 						<div class="small mt-4 text-center">
 							<span class="mr-2">
-								<i class="fas fa-circle text-primary"></i> Direct
+								<i class="fas fa-circle text-primary"></i> Rédacteurs
 							</span>
 							<span class="mr-2">
-								<i class="fas fa-circle text-success"></i> Social
+								<i class="fas fa-circle text-success"></i> Experts
 							</span>
 							<span class="mr-2">
-								<i class="fas fa-circle text-info"></i> Referral
+								<i class="fas fa-circle text-warning"></i> Courtiers
+							</span>
+							<span class="mr-2">
+								<i class="fas fa-circle text-danger"></i> Service clientèle
+							</span>
+							<span class="mr-2">
+								<i class="fas fa-circle text-secondary"></i> Contentieux
 							</span>
 						</div>
 					</div>

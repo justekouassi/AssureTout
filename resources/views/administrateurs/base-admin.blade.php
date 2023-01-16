@@ -12,9 +12,12 @@
 		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 		rel="stylesheet">
 	<!-- Custom styles for this template -->
+	{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 	<link href="/css/sb-admin-2.min.css" rel="stylesheet">
+	{{-- <link href="/css/sb-admin-2.css" rel="stylesheet"> --}}
 	<!-- Jquery datatables css -->
 	<link href="/css/dataTables.bootstrap4.css" rel="stylesheet">
+	@yield('css')
 
 	<title>@yield('title') | {{ env('APP_NAME') }}</title>
 </head>
@@ -30,7 +33,7 @@
 			<!-- Sidebar - Brand -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
+					<i class="fas fa-house-user"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">AssureTout</div>
 			</a>
@@ -55,35 +58,35 @@
 			<!-- Nav Item - Tables -->
 			<li class="nav-item {{ request()->is('admin/redacteurs') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/redacteurs">
-					<i class="fas fa-fw fa-table"></i>
+					<i class="fas fa-fw fa-user-edit"></i>
 					<span>Rédacteurs</span>
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
 			<li class="nav-item {{ request()->is('admin/experts') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/experts">
-					<i class="fas fa-fw fa-table"></i>
+					<i class="fas fa-fw fa-user-graduate"></i>
 					<span>Experts</span>
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
 			<li class="nav-item {{ request()->is('admin/courtiers') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/courtiers">
-					<i class="fas fa-fw fa-table"></i>
+					<i class="fas fa-fw fa-user-ninja"></i>
 					<span>Courtiers</span>
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
 			<li class="nav-item {{ request()->is('admin/service-clients') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/service-clients">
-					<i class="fas fa-fw fa-table"></i>
+					<i class="fas fa-fw fa-user-nurse"></i>
 					<span>Service clients</span>
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
 			<li class="nav-item {{ request()->is('admin/contentieux') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/contentieux">
-					<i class="fas fa-fw fa-table"></i>
+					<i class="fas fa-fw fa-user-injured"></i>
 					<span>Service contentieux</span>
 				</a>
 			</li>
@@ -98,7 +101,7 @@
 			<!-- Nav Item - Tables -->
 			<li class="nav-item {{ request()->is('admin/clients') ? 'active' : '' }}">
 				<a class="nav-link" href="/admin/clients">
-					<i class="fas fa-fw fa-table"></i>
+					<i class="fas fa-fw fa-users"></i>
 					<span>Clients</span>
 				</a>
 			</li>

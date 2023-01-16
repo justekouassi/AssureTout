@@ -18,4 +18,6 @@ class Contrat extends Model
 		'niveau',
 		'option_contrat'
 	];
+
+	public $timestamps = false;
 }

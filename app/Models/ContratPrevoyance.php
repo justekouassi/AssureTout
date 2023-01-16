@@ -14,4 +14,6 @@ class ContratPrevoyance extends Model
 		'nombre',
 		'regime'
 	];
+
+	public $timestamps = false;
 }
