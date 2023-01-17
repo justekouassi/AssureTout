@@ -15,21 +15,18 @@ class CourtierController extends Controller
 	 */
 	public function ajouter()
 	{
-		request()->validate([
-			'nom' => ['required', 'min:3'],
-			'prenoms' => ['required', 'min:3'],
-			'email' => ['required', 'email'],
-			'motdepasse' => ['required'],
-			'telephone' => [],
-		]);
-
-		Utilisateur::create([
+		Utilisateur::validate();
+		$utilisateur = Utilisateur::create([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),
 			'email' => request('email'),
 			'motdepasse' => bcrypt(request('motdepasse')),
 			'telephone' => request('telephone'),
 			'role' => 'Courtier',
+		]);
+
+		Courtier::create([
+			'id_utilisateur' => $utilisateur->id,
 		]);
 
 		return back()->withInput()->withErrors([

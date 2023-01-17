@@ -1,75 +1,55 @@
-@extends('base')
+@extends('courtiers.base-courtier')
 
-@section('title', 'Modification d\'une question')
+@section('title', 'Création d\'un nouveau sinistre')
+
+@section('css')
+	<link href="/css/base.css" rel="stylesheet">
+@endsection
 
 @section('content')
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<nav aria-label="breadcrumb" class="float-right mt-1">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/accueil">Accueil</a></li>
-					<li class="breadcrumb-item"><a href="/cours">Tableau</a></li>
-					<li class="breadcrumb-item active" aria-current="page"><a>Question</a></li>
-				</ol>
-			</nav>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="text-center mb-2">
-						<h4 class="mt-0 mb-1">Modifier une question</h4>
-					</div>
-
-					<form method="post" action="/question/{{$question->id}}/edit_question">
-						@csrf
-						
-						<div class="row">
-							<div class="col">
-								<div class="form-group row">
-									<label class="col-lg-2 col-form-label" for="question">Question</label>
-									<div class="col-lg-10">
-										<input required type="text" class="form-control mb-2" id="question" name="question" value="{{$question->question}}">
-									</div>
-									<label class="col-lg-2 col-form-label" for="reponse">Réponse</label>
-									<div class="col-lg-10">
-										<input required type="text" class="form-control mb-2" id="reponse" name="reponse" value="{{$question->reponse}}">
-									</div>
-									<label class="col-lg-2 col-form-label" for="categorie">Catégorie</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control mb-2" id="categorie" name="categorie" value="{{$question->categorie}}">
-									</div>
-									<label class="col-lg-2 col-form-label" for="explication">Explication</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control mb-2" id="explication" name="explication" value="{{$question->explication}}">
-									</div>
-									<label class="col-lg-2 col-form-label" for="wiki">Lien wiki</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control mb-2" id="wiki" name="wiki" value="{{$question->wiki}}">
-									</div>
-									<label class="col-lg-2 col-form-label" for="media">Lien media</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control mb-2" id="media" name="media" value="{{$question->media}}">
-									</div>
-								</div>
-								<button type="submit" class="btn btn-primary modification">Enregistrer les modifications</button>
-								<button class="btn btn-danger"><a href="/browse" style="color: white">Annuler</a></button>
-							</div>
-						</div>
-					</form>
-				</div>
+	<div class="container-fluid">
+		<form class="form" method="POST" action="/courtier/sinistres/create">
+			@csrf
+			<div class="title">Inscription</div>
+			<div class="subtitle">Sinistres</div>
+			<div class="input-container ic2">
+				<input class="input" id="date" name="date" type="date" placeholder=" " />
+				<div class="cut"></div>
+				<label class="placeholder" for="date">Date de déclaration</label>
 			</div>
-		</div>
+			<div class="input-container ic2">
+				<input class="input" id="montant" name="montant" type="number" placeholder=" " />
+				<div class="cut"></div>
+				<label class="placeholder" for="montant">Montant de remboursement</label>
+			</div>
+			<div class="input-container ic2">
+				<select class="input" id="statut" name="statut" required placeholder=" ">
+					<option value="" selected disabled>Choisir le statut</option>
+					<option value="traitement">En traitement</option>
+					<option value="estime">Estimé</option>
+					<option value="rembourse">Remboursé</option>
+				</select>
+				<div class="cut cut-short"></div>
+				<label class="placeholder" for="statut">Statut</label>
+			</div>
+			<div class="input-container ic2">
+				<input id="scan" name="scan" type="file" placeholder=" " />
+				<div class="cut cut-short"></div>
+				<label class="placeholder" for="scan">Scan<label />
+			</div>
+			<div class="input-container ic2">
+				<input class="input" id="contentieux" name="contentieux" type="checkbox" placeholder=" " />
+				<div class="cut cut-short"></div>
+				<label class="placeholder" for="contentieux">Ce sinistre est-il un contentieux ?<label />
+			</div>
+			<div class="input-container ic2">
+				<input class="input" id="transcription" name="transcription" type="text" placeholder=" " />
+				<div class="cut cut-short"></div>
+				<label class="placeholder" for="transcription">Transcription<label />
+			</div>
+			<button class="submit" type="submit">Enregistrer</button>
+		</form>
 	</div>
-</div>
-
-@endsection
-
-@section('javascript')
-
-	<script src="js/app.js"></script>
 
 @endsection

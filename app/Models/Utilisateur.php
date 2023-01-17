@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as BasicAuthenticatable;
-use Laravel\Sanctum\HasApiTokens;
 
 class Utilisateur extends Model implements Authenticatable
 {
-	use BasicAuthenticatable, HasApiTokens;
+	use BasicAuthenticatable;
 
 	protected $table = 'utilisateurs';
 
@@ -32,5 +31,16 @@ class Utilisateur extends Model implements Authenticatable
 	public function getRememberTokenName()
 	{
 		return null;
+	}
+
+	public static function validate()
+	{
+		request()->validate([
+			'nom' => ['required', 'min:3'],
+			'prenoms' => ['required', 'min:3'],
+			'email' => ['required', 'email'],
+			'motdepasse' => ['required'],
+			'telephone' => [],
+		]);
 	}
 }

@@ -14,7 +14,7 @@ use App\Http\Controllers\ContratVehiculeController;
 use App\Http\Controllers\CourtierController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\RedacteurController;
-use App\Http\Controllers\ServiceClientController;
+use App\Http\Controllers\TeleoperateurController;
 use App\Http\Controllers\SinistreController;
 
 /* Accueil */
@@ -43,7 +43,7 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 
 	/* dashboard administrateur */
 
-	Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
+	Route::get('/admin', [DashboardController::class, 'admin'])->name('admin');
 
 	/* inscription employés */
 
@@ -106,16 +106,16 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 
 	/* opérations de l'administrateur sur le service clients */
 
-	Route::get('/admin/service-clients', function () {
-		return view('administrateurs.service_clients.service-clients');
+	Route::get('/admin/teleoperateurs', function () {
+		return view('administrateurs.teleoperateurs.teleoperateurs');
 	});
-	Route::get('/admin/service-clients/create', function () {
-		return view('administrateurs.service-clients.service-client-create');
+	Route::get('/admin/teleoperateurs/create', function () {
+		return view('administrateurs.teleoperateurs.teleoperateur-create');
 	});
-	Route::post('/admin/service-clients/create', [ServiceClientController::class, 'ajouter']);
-	Route::get('/admin/service-clients/{id}/edit', [ServiceClientController::class, 'consulter']);
-	Route::post('/admin/service-clients/{id}/edit', [ServiceClientController::class, 'modifier']);
-	Route::get('/admin/service-clients/{id}/delete', [ServiceClientController::class, 'supprimer']);
+	Route::post('/admin/teleoperateurs/create', [TeleoperateurController::class, 'ajouter']);
+	Route::get('/admin/teleoperateurs/{id}/edit', [TeleoperateurController::class, 'consulter']);
+	Route::post('/admin/teleoperateurs/{id}/edit', [TeleoperateurController::class, 'modifier']);
+	Route::get('/admin/teleoperateurs/{id}/delete', [TeleoperateurController::class, 'supprimer']);
 
 	/* opérations de l'administrateur sur les clients */
 
@@ -125,10 +125,10 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 	Route::get('/admin/clients/create', function () {
 		return view('administrateurs.clients.client-create');
 	});
-	Route::post('/admin/clients/create', [ServiceClientController::class, 'ajouter']);
-	Route::get('/admin/clients/{id}/edit', [ServiceClientController::class, 'consulter']);
-	Route::post('/admin/clients/{id}/edit', [ServiceClientController::class, 'modifier']);
-	Route::get('/admin/clients/{id}/delete', [ServiceClientController::class, 'supprimer']);
+	Route::post('/admin/clients/create', [TeleoperateurController::class, 'ajouter']);
+	Route::get('/admin/clients/{id}/edit', [TeleoperateurController::class, 'consulter']);
+	Route::post('/admin/clients/{id}/edit', [TeleoperateurController::class, 'modifier']);
+	Route::get('/admin/clients/{id}/delete', [TeleoperateurController::class, 'supprimer']);
 
 	/* opérations du service contentieux */
 
@@ -139,34 +139,36 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 
 	/* opérations des courtiers */
 
-	Route::get('/courtier', function () {
-		return view('courtiers.courtier');
-	});
+	Route::get('/courtier', [DashboardController::class, 'courtier'])->name('courtier');
 	Route::get('/courtier/sinistres', function () {
 		return view('sinistres.sinistres');
+	});
+	Route::get('/courtier/sinistres/create', function () {
+		return view('sinistres.sinistre-create');
 	});
 
 	/* opérations des rédacteurs */
 
-	Route::get('/redacteur', function () {
-		return view('redacteurs.redacteur');
+	Route::get('/redacteur', [DashboardController::class, 'redacteur'])->name('redacteur');
+	Route::get('/redacteur/sinistres', function () {
+		return view('sinistres.sinistres');
 	});
-	Route::get('/experts', function () {
+	Route::get('/redacteur/experts', function () {
 		return view('redacteurs.experts');
 	});
 	Route::get('/experts/{id}', [ExpertController::class, 'affecter']);
 
-	/* opérations du service clients */
+	/* opérations des téléopérateurs */
 
-	Route::get('/service-clients', function () {
-		return view('service_clients.service_client');
+	Route::get('/teleoperateurs', function () {
+		return view('teleoperateurs.teleoperateur');
 	});
 	Route::get('/clients', function () {
-		return view('service_clients.clients');
+		return view('teleoperateurs.clients');
 	});
 	Route::get('/clients/{id}', [ClientController::class, 'consulter']);
 	Route::get('/offres', function () {
-		return view('service_clients.offres');
+		return view('teleoperateurs.offres');
 	});
 
 	/* opérations sinistres */

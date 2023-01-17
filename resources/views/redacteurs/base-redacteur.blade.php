@@ -29,7 +29,7 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/courtier">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/redacteur">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -39,8 +39,8 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item {{ request()->is('courtier') ? 'active' : '' }}">
-				<a class="nav-link" href="/courtier">
+			<li class="nav-item {{ request()->is('redacteur') ? 'active' : '' }}">
+				<a class="nav-link" href="/redacteur">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span>
 				</a>
@@ -54,10 +54,18 @@
 			</div>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('courtier/sinistres') ? 'active' : '' }}">
-				<a class="nav-link" href="/courtier/sinistres">
+			<li class="nav-item {{ request()->is('redacteur/sinistres') ? 'active' : '' }}">
+				<a class="nav-link" href="/redacteur/sinistres">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Sinistres</span>
+				</a>
+			</li>
+
+			<!-- Nav Item - Tables -->
+			<li class="nav-item {{ request()->is('redacteur/experts') ? 'active' : '' }}">
+				<a class="nav-link" href="/redacteur/experts">
+					<i class="fas fa-fw fa-table"></i>
+					<span>Experts</span>
 				</a>
 			</li>
 
@@ -65,14 +73,14 @@
 			<hr class="sidebar-divider">
 			<!-- Heading -->
 			<div class="sidebar-heading">
-				Clients
+				Courriers
 			</div>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('courtier/clients') ? 'active' : '' }}">
-				<a class="nav-link" href="/courtier/clients">
+			<li class="nav-item {{ request()->is('redacteur/courriers') ? 'active' : '' }}">
+				<a class="nav-link" href="/redacteur/courriers">
 					<i class="fas fa-fw fa-table"></i>
-					<span>Clients</span>
+					<span>Courriers de remboursement</span>
 				</a>
 			</li>
 

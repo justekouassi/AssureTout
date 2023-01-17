@@ -2,40 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ServiceClient;
+use App\Models\Teleoperateur;
 use App\Models\Utilisateur;
 
 /**
  * assure la gestion d'un contrat
  */
-class ServiceClientController extends Controller
+class TeleoperateurController extends Controller
 {
 	/**
 	 * assure l'inscription d'un utilisateur
 	 */
 	public function ajouter()
 	{
-		request()->validate([
-			'nom' => ['required', 'min:3'],
-			'prenoms' => ['required', 'min:3'],
-			'email' => ['required', 'email'],
-			'motdepasse' => ['required'],
-			'telephone' => [],
-		]);
-
-		Utilisateur::create([
+		Utilisateur::validate();
+		$utilisateur = Utilisateur::create([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),
 			'email' => request('email'),
 			'motdepasse' => bcrypt(request('motdepasse')),
 			'telephone' => request('telephone'),
-			'role' => 'Service clientèle',
+			'role' => 'Téléopérateur',
+		]);
+
+		Teleoperateur::create([
+			'id_utilisateur' => $utilisateur->id,
 		]);
 
 		return back()->withInput()->withErrors([
-			'email' => 'Cet rédacteur est déjà inscrit',
+			'email' => 'Cet téléopérateur est déjà inscrit',
 		]);
 	}
+
 	/**
 	 * consulte les informations d'un contrat en vue d'une éventuelle 
 	 * modification
@@ -43,21 +41,21 @@ class ServiceClientController extends Controller
 	public function consulter()
 	{
 		$id = request('id');
-		$service_client = ServiceClient::firstWhere('id', $id);
-		return view('administrateurs.service_clients.service-client-edit', [
-			'service-client' => $service_client,
+		$teleoperateur = Teleoperateur::firstWhere('id', $id);
+		return view('administrateurs.teleoperateurs.teleoperateur-edit', [
+			'teleoperateur' => $teleoperateur,
 		]);
 	}
 
 	/**
-	 * modifie les attributs d'un service-client
+	 * modifie les attributs d'un teleoperateur
 	 */
 	public function modifier()
 	{
-		ServiceClient::validate();
+		Teleoperateur::validate();
 		$id = request('id');
-		$service_client = ServiceClient::firstWhere('id', $id);
-		$service_client->update([
+		$teleoperateur = Teleoperateur::firstWhere('id', $id);
+		$teleoperateur->update([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),
 			'email' => request('email'),
@@ -73,7 +71,7 @@ class ServiceClientController extends Controller
 	public function supprimer()
 	{
 		$id = request('id');
-		ServiceClient::firstWhere('id', $id)->delete();
+		Teleoperateur::firstWhere('id', $id)->delete();
 		return back();
 	}
 }

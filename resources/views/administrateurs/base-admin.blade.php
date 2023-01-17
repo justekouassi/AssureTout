@@ -77,8 +77,8 @@
 				</a>
 			</li>
 			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('admin/service-clients') ? 'active' : '' }}">
-				<a class="nav-link" href="/admin/service-clients">
+			<li class="nav-item {{ request()->is('admin/teleoperateurs') ? 'active' : '' }}">
+				<a class="nav-link" href="/admin/teleoperateurs">
 					<i class="fas fa-fw fa-user-nurse"></i>
 					<span>Service clients</span>
 				</a>

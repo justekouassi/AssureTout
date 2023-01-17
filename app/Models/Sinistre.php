@@ -27,7 +27,7 @@ class Sinistre extends Model
 			'statut' => ['required'],
 			'scan' => [],
 			'contestation' => [],
-			'transcription' => ['required'],
+			'transcription' => [],
 		]);
 	}
 }

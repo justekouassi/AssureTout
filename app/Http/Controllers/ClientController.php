@@ -19,7 +19,7 @@ class ClientController extends Controller
 	{
 		$id = request('id');
 		$client = Client::firstWhere('id', $id);
-		return view('service_clients.client-view', [
+		return view('teleoperateurs.client-view', [
 			'client' => $client,
 		]);
 	}
@@ -32,6 +32,6 @@ class ClientController extends Controller
 		$id = request('id');
 		$client = Client::firstWhere('id', $id);
 		Mail::to('kjuste02@outlook.fr')->send(new InfosClient($client));
-		return view('service_clients.clients');
+		return view('teleoperateurs.clients');
 	}
 }

@@ -15,15 +15,8 @@ class RedacteurController extends Controller
 	 */
 	public function ajouter()
 	{
-		request()->validate([
-			'nom' => ['required', 'min:3'],
-			'prenoms' => ['required', 'min:3'],
-			'email' => ['required', 'email'],
-			'motdepasse' => ['required'],
-			'telephone' => [],
-		]);
-
-		Utilisateur::create([
+		Utilisateur::validate();
+		$utilisateur = Utilisateur::create([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),
 			'email' => request('email'),
@@ -32,10 +25,17 @@ class RedacteurController extends Controller
 			'role' => 'Rédacteur',
 		]);
 
+		Redacteur::create([
+			'id_utilisateur' => $utilisateur->id,
+		]);
+
+		// dd($utilisateur);
+
 		return back()->withInput()->withErrors([
 			'email' => 'Cet rédacteur est déjà inscrit',
 		]);
 	}
+
 	/**
 	 * consulte les informations d'un contrat en vue d'une éventuelle 
 	 * modification

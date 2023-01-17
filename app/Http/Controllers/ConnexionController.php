@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Utilisateur;
-use App\Mail\ConfirmAccount;
-use Illuminate\Support\Facades\Mail;
 
 /**
  * L'ensemble des fonctions associées à l'authentification d'un utilisateur
@@ -13,7 +11,6 @@ class ConnexionController extends Controller
 {
 	/**
 	 * assure la connexion d'un utilisateur
-	 * @return accueil la page d'accueil
 	 */
 	public function connexion()
 	{
@@ -23,13 +20,16 @@ class ConnexionController extends Controller
 		]);
 		$result = auth()->attempt([
 			'email' => request('email'),
-			'password' => request('password'),
+			'motdepasse' => request('password'),
 		]);
+		
+		// dd($result);
 		if ($result) {
-			return redirect('/');
+			return redirect('/redacteur');
 		}
 		return back()->withInput()->withErrors([
-			'email' => 'Vos identifiants sont incorrects.',
+			'email' => 'Votre email est incorrect.',
+			'password' => 'Votre mot de passe est incorrect.',
 		]);
 	}
 
@@ -40,7 +40,7 @@ class ConnexionController extends Controller
 	public function deconnexion()
 	{
 		auth()->logout();
-		return redirect('/');
+		return redirect('/login');
 	}
 
 	/**
@@ -48,7 +48,6 @@ class ConnexionController extends Controller
 	 */
 	public function attenteNouveauMdp()
 	{
-		
 	}
 
 
@@ -60,14 +59,14 @@ class ConnexionController extends Controller
 	{
 		request()->validate([
 			'email' => ['required', 'email'],
-			'password' => ['required', 'confirmed'],
-			'password_confirmation' => ['required'],
+			'motdepasse' => ['required', 'confirmed'],
+			'confirmation' => ['required'],
 		]);
 
 		$email = request('email');
-		$utilisateur = Utilisateur::where('email', $email)->first();
+		$utilisateur = Utilisateur::firstWhere('email', $email);
 		$utilisateur->update([
-			'motdepasse' => bcrypt(request('password')),
+			'motdepasse' => bcrypt(request('motdepasse')),
 		]);
 
 		return redirect('/');

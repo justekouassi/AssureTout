@@ -10,7 +10,7 @@
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-			<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="#">
+			<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="javascript:void(0)">
 				<i class="fas fa-download fa-sm text-white-50"></i> Générer rapport
 			</a>
 		</div>
@@ -29,7 +29,7 @@
 										Sinistres
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">40</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800">{{ $sinistres->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -50,7 +50,7 @@
 										Contentieux
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">21</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800">{{ $contentieux->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

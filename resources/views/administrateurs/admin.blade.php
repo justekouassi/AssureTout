@@ -87,11 +87,11 @@
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
 								<div class="font-weight-bold text-danger text-uppercase mb-1 text-xs">
-									<a href="/admin/service-clients" style="color: unset; text-decoration: none">
+									<a href="/admin/teleoperateurs" style="color: unset; text-decoration: none">
 										Service clientèle
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800" id="service-clients">{{ $service_clients->count() }}</div>
+								<div class="h5 font-weight-bold mb-0 text-gray-800" id="teleoperateurs">{{ $teleoperateurs->count() }}</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-comments fa-2x text-gray-300"></i>

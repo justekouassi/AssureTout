@@ -9,14 +9,14 @@ var contentieux = parseInt(document.querySelector('#contentieux').innerHTML)
 var courtiers = parseInt(document.querySelector('#courtiers').innerHTML)
 var experts = parseInt(document.querySelector('#experts').innerHTML)
 var redacteurs = parseInt(document.querySelector('#redacteurs').innerHTML)
-var service_clients = parseInt(document.querySelector('#service-clients').innerHTML)
+var teleoperateurs = parseInt(document.querySelector('#teleoperateurs').innerHTML)
 
 var myPieChart = new Chart(ctx, {
 	type: 'doughnut',
 	data: {
 		labels: ['Contentieux', 'Courtiers', 'Experts', 'Redacteurs', 'Service clientèle'],
 		datasets: [{
-			// data: [contentieux, courtiers, experts, redacteurs, service_clients],
+			// data: [contentieux, courtiers, experts, redacteurs, teleoperateurs],
 			data: [20, 10, 10, 20, 40],
 			backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#4e73df', '#1cc88a'],
 			hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#2e59d9', '#17a673'],
