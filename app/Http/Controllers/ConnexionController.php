@@ -9,6 +9,12 @@ use App\Models\Utilisateur;
  */
 class ConnexionController extends Controller
 {
+	// public function __construct()
+	// {
+	// 	$this->middleware('auth')->except('fonction');
+	// }
+
+
 	/**
 	 * assure la connexion d'un utilisateur
 	 */
@@ -16,20 +22,35 @@ class ConnexionController extends Controller
 	{
 		request()->validate([
 			'email' => ['required', 'email'],
-			'password' => ['required'],
+			'motdepasse' => ['required', 'min:4'],
 		]);
 		$result = auth()->attempt([
 			'email' => request('email'),
-			'motdepasse' => request('password'),
+			'password' => request('motdepasse'),
 		]);
-		
-		// dd($result);
+
+		// dd(auth()->user());
+		$role = auth()->user()->role;
 		if ($result) {
-			return redirect('/redacteur');
+			switch ($role) {
+				case 'Admin':
+					return redirect('/admin');
+				case 'Contentieux':
+					return redirect('/contentieux');
+				case 'Courtier':
+					return redirect('/courtier');
+				case 'Expert':
+					return redirect('/expert');
+				case 'Rédacteur':
+					return redirect('/redacteur');
+				case 'Téléopérateur':
+					return redirect('/teleoperateur');
+				default:
+					return redirect('/admin');
+			}
 		}
 		return back()->withInput()->withErrors([
-			'email' => 'Votre email est incorrect.',
-			'password' => 'Votre mot de passe est incorrect.',
+			'email' => 'Vos identifiants sont incorrects.',
 		]);
 	}
 
@@ -69,6 +90,6 @@ class ConnexionController extends Controller
 			'motdepasse' => bcrypt(request('motdepasse')),
 		]);
 
-		return redirect('/');
+		return redirect('/login');
 	}
 }

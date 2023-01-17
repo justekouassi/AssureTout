@@ -283,7 +283,7 @@
 				<div class="modal-body">Cliquez sur le bouton "Se déconnecter" si vous voulez mettre fin à votre session</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" data-dismiss="modal" type="button">Annuler</button>
-					<a class="btn btn-primary" href="/login">Se déconnecter</a>
+					<a class="btn btn-primary" href="/logout">Se déconnecter</a>
 				</div>
 			</div>
 		</div>

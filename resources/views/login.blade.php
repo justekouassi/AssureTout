@@ -25,13 +25,13 @@
 				<p style="color: red">{{ $errors->first('email') }}</p>
 			@endif
 			<div class="input-container ic2">
-				<input class="input" id="motdepasse" name="password" type="password" value="{{ old('password') }}"
+				<input class="input" id="motdepasse" name="motdepasse" type="password" value="{{ old('motdepasse') }}"
 					placeholder=" " />
 				<div class="cut cut-short"></div>
 				<label class="placeholder" for="motdepasse">Mot de passe<label />
 			</div>
-			@if ($errors->has('password'))
-				<p style="color: red">{{ $errors->first('password') }}</p>
+			@if ($errors->has('motdepasse'))
+				<p style="color: red">{{ $errors->first('motdepasse') }}</p>
 			@endif
 			<button class="submit" type="submit">Se connecter</button>
 		</form>

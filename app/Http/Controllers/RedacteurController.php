@@ -20,7 +20,7 @@ class RedacteurController extends Controller
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),
 			'email' => request('email'),
-			'motdepasse' => bcrypt(request('motdepasse')),
+			'motdepasse' => bcrypt(request('password')),
 			'telephone' => request('telephone'),
 			'role' => 'Rédacteur',
 		]);
@@ -28,8 +28,6 @@ class RedacteurController extends Controller
 		Redacteur::create([
 			'id_utilisateur' => $utilisateur->id,
 		]);
-
-		// dd($utilisateur);
 
 		return back()->withInput()->withErrors([
 			'email' => 'Cet rédacteur est déjà inscrit',

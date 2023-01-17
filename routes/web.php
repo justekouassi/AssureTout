@@ -17,18 +17,16 @@ use App\Http\Controllers\RedacteurController;
 use App\Http\Controllers\TeleoperateurController;
 use App\Http\Controllers\SinistreController;
 
-/* Accueil */
-
-Route::get('/', function () {
-	return view('welcome');
-})->name('index');
-
 /* Connexion */
 
 Route::get('/login', function () {
 	return view('login');
 })->name('login');
 Route::post('/login', [ConnexionController::class, 'connexion']);
+
+/* déconnexion */
+
+Route::get('/logout', [ConnexionController::class, 'deconnexion']);
 
 /* Mot de passe */
 
@@ -37,11 +35,11 @@ Route::get('/change-password', function () {
 });
 Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 
-// Route::group([
-// 	'middleware' => 'auth',
-// ], function () {
+/* dashboard administrateur */
 
-	/* dashboard administrateur */
+Route::group([
+	'middleware' => 'admin',
+], function () {
 
 	Route::get('/admin', [DashboardController::class, 'admin'])->name('admin');
 
@@ -129,15 +127,25 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 	Route::get('/admin/clients/{id}/edit', [TeleoperateurController::class, 'consulter']);
 	Route::post('/admin/clients/{id}/edit', [TeleoperateurController::class, 'modifier']);
 	Route::get('/admin/clients/{id}/delete', [TeleoperateurController::class, 'supprimer']);
+});
 
-	/* opérations du service contentieux */
+/* opérations du service contentieux */
+
+Route::group([
+	'middleware' => 'contentieux',
+], function () {
 
 	Route::get('/contentieux', function () {
 		return view('service_contentieux.contentieux');
 	});
 	Route::get('/contentieux/{id}', [ContentieuxController::class, 'consulter']);
+});
 
-	/* opérations des courtiers */
+/* opérations des courtiers */
+
+Route::group([
+	'middleware' => 'courtier',
+], function () {
 
 	Route::get('/courtier', [DashboardController::class, 'courtier'])->name('courtier');
 	Route::get('/courtier/sinistres', function () {
@@ -146,8 +154,13 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 	Route::get('/courtier/sinistres/create', function () {
 		return view('sinistres.sinistre-create');
 	});
+});
 
-	/* opérations des rédacteurs */
+/* opérations des rédacteurs */
+
+Route::group([
+	'middleware' => 'redacteur',
+], function () {
 
 	Route::get('/redacteur', [DashboardController::class, 'redacteur'])->name('redacteur');
 	Route::get('/redacteur/sinistres', function () {
@@ -157,8 +170,13 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 		return view('redacteurs.experts');
 	});
 	Route::get('/experts/{id}', [ExpertController::class, 'affecter']);
+});
 
-	/* opérations des téléopérateurs */
+/* opérations des téléopérateurs */
+
+Route::group([
+	'middleware' => 'teleoperateur',
+], function () {
 
 	Route::get('/teleoperateurs', function () {
 		return view('teleoperateurs.teleoperateur');
@@ -170,8 +188,13 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 	Route::get('/offres', function () {
 		return view('teleoperateurs.offres');
 	});
+});
 
-	/* opérations sinistres */
+/* opérations sinistres */
+
+Route::group([
+	'middleware' => 'auth',
+], function () {
 
 	Route::get('/sinistres/create', function () {
 		return view('sinistres.sinistre-create');
@@ -180,4 +203,4 @@ Route::post('/change-password', [ConnexionController::class, 'nouveauMdp']);
 	Route::get('/sinistres/{id}/edit', [SinistreController::class, 'consulter']);
 	Route::post('/sinistres/{id}/edit', [SinistreController::class, 'modifier']);
 	Route::get('/sinistres/{id}/delete', [SinistreController::class, 'supprimer']);
-// });
+});
