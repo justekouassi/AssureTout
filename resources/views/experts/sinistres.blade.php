@@ -34,7 +34,7 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@php $sinistres = \App\Models\Sinistre::all(); @endphp
+							@php $sinistres = \App\Models\Sinistre::where('statut', 'Traitement')->get(); @endphp
 							@foreach ($sinistres as $sinistre)
 								<tr>
 									<td>{{ $sinistre->date_declaration }}</td>

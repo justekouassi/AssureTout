@@ -48,7 +48,7 @@
 										Offres
 									</a>
 								</div>
-								<div class="h5 font-weight-bold mb-0 text-gray-800">{{ $offres->count() }}</div>
+								{{-- <div class="h5 font-weight-bold mb-0 text-gray-800">{{ $offres->count() }}</div> --}}
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-calendar fa-2x text-gray-300"></i>

@@ -29,7 +29,7 @@ class SouscriptionContrat extends Mailable
 	public function build()
 	{
 		return $this->subject('Possibilité de souscrire à un contrat')
-		->view('emails.souscription-contrat');
+			->view('emails.souscription-contrat');
 		// ->attach('images/jkwiz-noir.png');
 	}
 }

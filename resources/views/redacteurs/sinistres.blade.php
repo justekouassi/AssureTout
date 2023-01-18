@@ -42,9 +42,23 @@
 									<td>{{ $sinistre->statut }}</td>
 									<td>{{ $sinistre->contestation == 0 ? 'Non' : 'Oui' }}</td>
 									<td>
-										<a class="btn btn-primary btn-sm" href="/redacteur/affect/{{ $sinistre->id }}">
-											<i class="fa fa-pen"></i>
-										</a>
+										@if ($sinistre->statut == 'Traitement')
+											<a class="btn btn-primary btn-sm" href="/redacteur/affect/{{ $sinistre->id }}">
+												<i class="fa fa-pen"></i>
+											</a>
+										@else
+											@if ($sinistre->statut == 'Estimé')
+												<a class="btn btn-warning btn-sm" href="/redacteur/notify/{{ $sinistre->id }}">
+													<i class="fa fa-pen"></i>
+												</a>
+											@else
+												@if ($sinistre->statut == 'Remboursé')
+													<a class="btn btn-danger btn-sm" href="#">
+														<i class="fa fa-trash"></i>
+													</a>
+												@endif
+											@endif
+										@endif
 									</td>
 								</tr>
 							@endforeach

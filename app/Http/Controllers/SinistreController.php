@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sinistre;
-use App\Mail\SouscriptionContrat;
+use App\Mail\Remboursement;
 use App\Models\Expert;
 use Illuminate\Support\Facades\Mail;
 
@@ -43,8 +43,8 @@ class SinistreController extends Controller
 	}
 
 	/**
-	 * consulte les informations d'un sinistre en vue d'une éventuelle
-	 * modification
+	 * permet à un expert de consulter les informations d'un sinistre 
+	 * avant d'évaluer le montant de remboursement
 	 */
 	public function consulterExpert()
 	{
@@ -56,7 +56,7 @@ class SinistreController extends Controller
 	}
 
 	/**
-	 * modifie les attributs d'un sinistre
+	 * modifie le montant de remboursement d'un sinistre et change son statut
 	 */
 	public function modifierMontant()
 	{
@@ -133,12 +133,15 @@ class SinistreController extends Controller
 	/**
 	 * contracte un sinistre
 	 */
-	public function contracter()
+	public function notifier()
 	{
+		Mail::to('kjuste02@outlook.fr')->send(new Remboursement());
 		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
-		Mail::to('kjuste02@outlook.fr')->send(new SouscriptionContrat($sinistre));
-		return view('courtiers.sinistres');
+		$sinistre->update([
+			'statut' => request('Remboursé'),
+		]);
+		return view('redacteurs.sinistres');
 	}
 
 	/**

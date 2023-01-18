@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class InfosClient extends Mailable
+class RefusDevis extends Mailable
 {
 	use Queueable, SerializesModels;
 
@@ -28,7 +28,7 @@ class InfosClient extends Mailable
 	 */
 	public function build()
 	{
-		return $this->subject('Informations du client')
-			->view('emails.infos_client');
+		return $this->subject('Refus de devis')
+			->view('emails.refus-devis');
 	}
 }

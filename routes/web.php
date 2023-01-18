@@ -134,6 +134,10 @@ Route::group([
 	Route::get('/courtier/sinistres/create', function () {
 		return view('courtiers.sinistre-create');
 	});
+	Route::post('/courtier/sinistres/create', [SinistreController::class, 'ajouter']);
+	Route::get('/courtier/sinistres/{id}/edit', [SinistreController::class, 'consulter']);
+	Route::post('/courtier/sinistres/{id}/edit', [SinistreController::class, 'modifier']);
+	Route::get('/courtier/sinistres/{id}/delete', [SinistreController::class, 'supprimer']);
 });
 
 /* opérations des experts */
@@ -165,6 +169,7 @@ Route::group([
 	});
 	Route::get('/redacteur/affect/{id_sinistre}', [SinistreController::class, 'affecter']);
 	Route::post('/redacteur/{id_sinistre}/choose/{id}', [SinistreController::class, 'choisir']);
+	Route::get('/redacteur/notify/{id}', [SinistreController::class, 'notifier']);
 });
 
 /* opérations des téléopérateurs */
@@ -173,29 +178,12 @@ Route::group([
 	'middleware' => 'teleoperateur',
 ], function () {
 
-	Route::get('/teleoperateurs', function () {
-		return view('teleoperateurs.teleoperateur');
-	});
-	Route::get('/clients', function () {
+	Route::get('/teleoperateur', [DashboardController::class, 'teleoperateur'])->name('teleoperateur');
+	Route::get('/teleoperateur/clients', function () {
 		return view('teleoperateurs.clients');
 	});
-	Route::get('/clients/{id}', [ClientController::class, 'consulter']);
-	Route::get('/offres', function () {
+	Route::get('/teleoperateur/clients/{id}', [ClientController::class, 'consulter']);
+	Route::get('/teleoperateur/offres', function () {
 		return view('teleoperateurs.offres');
 	});
-});
-
-/* opérations sinistres */
-
-Route::group([
-	'middleware' => 'auth',
-], function () {
-
-	Route::get('/sinistres/create', function () {
-		return view('sinistres.sinistre-create');
-	});
-	Route::post('/sinistres/create', [SinistreController::class, 'ajouter']);
-	Route::get('/sinistres/{id}/edit', [SinistreController::class, 'consulter']);
-	Route::post('/sinistres/{id}/edit', [SinistreController::class, 'modifier']);
-	Route::get('/sinistres/{id}/delete', [SinistreController::class, 'supprimer']);
 });

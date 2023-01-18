@@ -19,8 +19,8 @@
 							<tr>
 								<th>Nom</th>
 								<th>Prénoms</th>
-								<th>Statut</th>
-								<th>Contestation</th>
+								<th>Email</th>
+								<th>Téléphone</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -28,22 +28,22 @@
 							<tr>
 								<th>Nom</th>
 								<th>Prénoms</th>
-								<th>Statut</th>
-								<th>Contestation</th>
+								<th>Email</th>
+								<th>Téléphone</th>
 								<th>Actions</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							@php $clients = \App\Models\Client::all(); @endphp
+							@php $clients = \App\Models\Utilisateur::where('role', 'Client')->get(); @endphp
 							@foreach ($clients as $client)
 								<tr>
-									<td>{{ $client->date_declaration }}</td>
-									<td>{{ $client->montant }}</td>
-									<td>{{ $client->statut }}</td>
-									<td>{{ $client->contestation == 0 ? 'Non' : 'Oui' }}</td>
+									<td>{{ $client->nom }}</td>
+									<td>{{ $client->prenoms }}</td>
+									<td>{{ $client->email }}</td>
+									<td>{{ $client->telephone }}</td>
 									<td>
-										<a class="btn btn-primary btn-sm" href="/teleoperateur/affect/{{ $client->id }}">
-											<i class="fa fa-pencil"></i>
+										<a class="btn btn-primary btn-sm" href="/teleoperateur/client/{{ $client->id }}">
+											<i class="fa fa-pen"></i>
 										</a>
 									</td>
 								</tr>

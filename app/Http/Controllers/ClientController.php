@@ -15,6 +15,17 @@ class ClientController extends Controller
 	 * consulte les informations d'un client en vue d'une éventuelle 
 	 * modification
 	 */
+	public function informer()
+	{
+		$id = request('id');
+		$client = Client::firstWhere('id', $id);
+		return back();
+	}
+
+	/**
+	 * consulte les informations d'un client en vue d'une éventuelle 
+	 * modification
+	 */
 	public function consulter()
 	{
 		$id = request('id');

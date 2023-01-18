@@ -6,7 +6,10 @@
 
 	<div class="container-fluid">
 
-		<h1 class="h3 mb-2 text-gray-800">Sinistres</h1>
+		<div style="display: flex; flex-direction:row; justify-content:space-between">
+			<h1 class="h3 mb-2 text-gray-800">Sinistres</h1>
+			<a class="btn btn-info" href="/admin/redacteurs/create">Ajouter</a>
+		</div>
 
 		<div class="card mb-4 shadow">
 			<div class="card-header py-3">
@@ -42,10 +45,10 @@
 									<td>{{ $sinistre->statut }}</td>
 									<td>{{ $sinistre->contestation == 0 ? 'Non' : 'Oui' }}</td>
 									<td>
-										<a class="btn btn-primary btn-sm" href="/sinistres/{{ $sinistre->id }}/edit">
+										<a class="btn btn-primary btn-sm" href="/courtier/sinistres/{{ $sinistre->id }}/edit">
 											<i class="fa fa-pen"></i>
 										</a>
-										<a class="btn btn-danger btn-sm suppression" href="/sinistres/{{ $sinistre->id }}/delete">
+										<a class="btn btn-danger btn-sm suppression" href="/courtier/sinistres/{{ $sinistre->id }}/delete">
 											<i class="fa fa-trash"></i>
 										</a>
 									</td>

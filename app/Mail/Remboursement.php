@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class InfosClient extends Mailable
+class Remboursement extends Mailable
 {
 	use Queueable, SerializesModels;
 
@@ -16,7 +16,7 @@ class InfosClient extends Mailable
 	 *
 	 * @return void
 	 */
-	public function __construct(array $user)
+	public function __construct(array $user = [])
 	{
 		$this->user = $user;
 	}
@@ -28,7 +28,7 @@ class InfosClient extends Mailable
 	 */
 	public function build()
 	{
-		return $this->subject('Informations du client')
-			->view('emails.infos_client');
+		return $this->subject('Courrier de remboursement')
+			->view('emails.remboursement');
 	}
 }
