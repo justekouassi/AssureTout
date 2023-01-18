@@ -4,10 +4,8 @@
 
 @section('content')
 
-	<!-- Begin Page Content -->
 	<div class="container-fluid">
 
-		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 			<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="javascript:void(0)">
@@ -67,7 +65,7 @@
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
 								<div class="font-weight-bold text-success text-uppercase mb-1 text-xs">
-									<a href="/redacteur/experts" style="color: unset; text-decoration: none">
+									<a href="/redacteur/courriers" style="color: unset; text-decoration: none">
 										Courriers
 									</a>
 								</div>
@@ -158,6 +156,5 @@
 		</div>
 
 	</div>
-	<!-- /.container-fluid -->
 
 @endsection

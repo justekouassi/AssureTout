@@ -29,7 +29,7 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/redacteur">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/teleoperateur">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-house-user"></i>
 				</div>
@@ -39,8 +39,8 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item {{ request()->is('redacteur') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur">
+			<li class="nav-item {{ request()->is('teleoperateur') ? 'active' : '' }}">
+				<a class="nav-link" href="/teleoperateur">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span>
 				</a>
@@ -50,37 +50,22 @@
 			<hr class="sidebar-divider">
 			<!-- Heading -->
 			<div class="sidebar-heading">
-				Employés
+				Activités
 			</div>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('redacteur/sinistres') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur/sinistres">
+			<li class="nav-item {{ request()->is('teleoperateur/clients') ? 'active' : '' }}">
+				<a class="nav-link" href="/teleoperateur/clients">
 					<i class="fas fa-fw fa-table"></i>
-					<span>Sinistres</span>
+					<span>Clients</span>
 				</a>
 			</li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('redacteur/experts') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur/experts">
+			<li class="nav-item {{ request()->is('teleoperateur/offres') ? 'active' : '' }}">
+				<a class="nav-link" href="/teleoperateur/offres">
 					<i class="fas fa-fw fa-table"></i>
-					<span>Experts</span>
-				</a>
-			</li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-			<!-- Heading -->
-			<div class="sidebar-heading">
-				Courriers
-			</div>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('redacteur/courriers') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur/courriers">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Courriers de remboursement</span>
+					<span>Offres</span>
 				</a>
 			</li>
 
@@ -204,7 +189,8 @@
 						<li class="nav-item dropdown no-arrow">
 							<a class="nav-link dropdown-toggle" id="userDropdown" data-toggle="dropdown" href="#" role="button"
 								aria-haspopup="true" aria-expanded="false">
-								<span class="d-none d-lg-inline small mr-2 text-gray-600">{{ auth()->user()->prenoms }} {{ auth()->user()->nom }}</span>
+								<span class="d-none d-lg-inline small mr-2 text-gray-600">{{ auth()->user()->prenoms }}
+									{{ auth()->user()->nom }}</span>
 								<img class="img-profile rounded-circle" src="img/undraw_profile.svg">
 							</a>
 							<!-- Dropdown - User Information -->

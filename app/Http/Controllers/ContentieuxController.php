@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contentieux;
 use App\Models\Utilisateur;
+use Illuminate\Support\Facades\DB;
 
 /**
  * assure la gestion d'un contrat
@@ -33,15 +34,22 @@ class ContentieuxController extends Controller
 			'email' => 'Cet contentieux est déjà inscrit',
 		]);
 	}
+	
 	/**
 	 * consulte les informations d'un contentieux
 	 */
 	public function consulter()
 	{
 		$id = request('id');
-		$contentieux = Contentieux::firstWhere('id', $id);
+		$requete_contentieux = "SELECT utilisateurs.*
+			FROM contentieux 
+			LEFT JOIN utilisateurs 
+			ON contentieux.id_utilisateur = utilisateurs.id
+			WHERE utilisateurs.id = $id";
+
+		$contentieux = DB::select($requete_contentieux);
 		return view('administrateurs.contentieux.contentieux-edit', [
-			'contentieux' => $contentieux,
+			'contentieux' => $contentieux[0],
 		]);
 	}
 
@@ -50,9 +58,9 @@ class ContentieuxController extends Controller
 	 */
 	public function modifier()
 	{
-		Contentieux::validate();
+		Utilisateur::validate();
 		$id = request('id');
-		$contentieux = Contentieux::firstWhere('id', $id);
+		$contentieux = Utilisateur::firstWhere('id', $id);
 		$contentieux->update([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),

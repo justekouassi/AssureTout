@@ -31,7 +31,7 @@
 			<!-- Sidebar - Brand -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/courtier">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
+					<i class="fas fa-house-user"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">AssureTout</div>
 			</a>
@@ -96,11 +96,11 @@
 				<nav class="navbar navbar-expand navbar-light topbar static-top mb-4 bg-white shadow">
 
 					<!-- Sidebar Toggle (Topbar) -->
-					<form class="form-inline">
+					<div class="form-inline">
 						<button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
 							<i class="fa fa-bars"></i>
 						</button>
-					</form>
+					</div>
 
 					<!-- Topbar Search -->
 					<form class="d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search my-2 mr-auto">

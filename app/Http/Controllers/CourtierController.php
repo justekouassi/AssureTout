@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Courtier;
 use App\Models\Utilisateur;
+use Illuminate\Support\Facades\DB;
 
 /**
  * assure la gestion d'un contrat
@@ -33,15 +34,22 @@ class CourtierController extends Controller
 			'email' => 'Cet courtier est déjà inscrit',
 		]);
 	}
+
 	/**
 	 * consulte les informations d'un courtier
 	 */
 	public function consulter()
 	{
 		$id = request('id');
-		$courtier = Courtier::firstWhere('id', $id);
+		$requete_courtier = "SELECT utilisateurs.*
+			FROM courtiers 
+			LEFT JOIN utilisateurs 
+			ON courtiers.id_utilisateur = utilisateurs.id
+			WHERE utilisateurs.id = $id";
+
+		$courtier = DB::select($requete_courtier);
 		return view('administrateurs.courtiers.courtier-edit', [
-			'courtier' => $courtier,
+			'courtier' => $courtier[0],
 		]);
 	}
 
@@ -50,9 +58,9 @@ class CourtierController extends Controller
 	 */
 	public function modifier()
 	{
-		Courtier::validate();
+		Utilisateur::validate();
 		$id = request('id');
-		$courtier = Courtier::firstWhere('id', $id);
+		$courtier = Utilisateur::firstWhere('id', $id);
 		$courtier->update([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),

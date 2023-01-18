@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Teleoperateur;
 use App\Models\Utilisateur;
+use Illuminate\Support\Facades\DB;
 
 /**
  * assure la gestion d'un contrat
@@ -35,15 +36,20 @@ class TeleoperateurController extends Controller
 	}
 
 	/**
-	 * consulte les informations d'un contrat en vue d'une éventuelle 
-	 * modification
+	 * consulte les informations d'un teleoperateur
 	 */
 	public function consulter()
 	{
 		$id = request('id');
-		$teleoperateur = Teleoperateur::firstWhere('id', $id);
+		$requete_teleoperateur = "SELECT utilisateurs.*
+			FROM teleoperateurs 
+			LEFT JOIN utilisateurs 
+			ON teleoperateurs.id_utilisateur = utilisateurs.id
+			WHERE utilisateurs.id = $id";
+
+		$teleoperateur = DB::select($requete_teleoperateur);
 		return view('administrateurs.teleoperateurs.teleoperateur-edit', [
-			'teleoperateur' => $teleoperateur,
+			'teleoperateur' => $teleoperateur[0],
 		]);
 	}
 
@@ -52,9 +58,9 @@ class TeleoperateurController extends Controller
 	 */
 	public function modifier()
 	{
-		Teleoperateur::validate();
+		Utilisateur::validate();
 		$id = request('id');
-		$teleoperateur = Teleoperateur::firstWhere('id', $id);
+		$teleoperateur = Utilisateur::firstWhere('id', $id);
 		$teleoperateur->update([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),
@@ -66,7 +72,7 @@ class TeleoperateurController extends Controller
 	}
 
 	/**
-	 * supprime un rédacteur
+	 * supprime un téléopérateur
 	 */
 	public function supprimer()
 	{

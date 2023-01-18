@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Redacteur;
 use App\Models\Utilisateur;
+use Illuminate\Support\Facades\DB;
 
 /**
  * assure la gestion d'un contrat
@@ -35,15 +36,20 @@ class RedacteurController extends Controller
 	}
 
 	/**
-	 * consulte les informations d'un contrat en vue d'une éventuelle 
-	 * modification
+	 * consulte les informations d'un rédacteur
 	 */
 	public function consulter()
 	{
 		$id = request('id');
-		$redacteur = Redacteur::firstWhere('id', $id);
+		$requete_redacteur = "SELECT utilisateurs.*
+			FROM redacteurs 
+			LEFT JOIN utilisateurs 
+			ON redacteurs.id_utilisateur = utilisateurs.id
+			WHERE utilisateurs.id = $id";
+
+		$redacteur = DB::select($requete_redacteur);
 		return view('administrateurs.redacteurs.redacteur-edit', [
-			'redacteur' => $redacteur,
+			'redacteur' => $redacteur[0],
 		]);
 	}
 
@@ -52,9 +58,9 @@ class RedacteurController extends Controller
 	 */
 	public function modifier()
 	{
-		Redacteur::validate();
+		Utilisateur::validate();
 		$id = request('id');
-		$redacteur = Redacteur::firstWhere('id', $id);
+		$redacteur = Utilisateur::firstWhere('id', $id);
 		$redacteur->update([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),

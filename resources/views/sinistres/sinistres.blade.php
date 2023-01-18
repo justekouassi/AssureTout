@@ -4,13 +4,10 @@
 
 @section('content')
 
-	<!-- Begin Page Content -->
 	<div class="container-fluid">
 
-		<!-- Page Heading -->
 		<h1 class="h3 mb-2 text-gray-800">Sinistres</h1>
 
-		<!-- DataTales Example -->
 		<div class="card mb-4 shadow">
 			<div class="card-header py-3">
 				<h6 class="font-weight-bold text-primary m-0">Liste des sinistres</h6>
@@ -46,7 +43,7 @@
 									<td>{{ $sinistre->contestation == 0 ? 'Non' : 'Oui' }}</td>
 									<td>
 										<a class="btn btn-primary btn-sm" href="/sinistres/{{ $sinistre->id }}/edit">
-											<i class="fa fa-pencil-square"></i>
+											<i class="fa fa-pen"></i>
 										</a>
 										<a class="btn btn-danger btn-sm suppression" href="/sinistres/{{ $sinistre->id }}/delete">
 											<i class="fa fa-trash"></i>
@@ -61,6 +58,5 @@
 		</div>
 
 	</div>
-	<!-- /.container-fluid -->
 
 @endsection

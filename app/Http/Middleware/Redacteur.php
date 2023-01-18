@@ -16,7 +16,7 @@ class Redacteur
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if (auth()->user()->role == 'Redacteur') {
+		if (auth()->user()->role == 'Rédacteur') {
 			return $next($request);
 		} else {
 			abort(403, "Vous n'êtes pas autorisé à visiter cette page car vous n'êtes pas un rédacteur !");

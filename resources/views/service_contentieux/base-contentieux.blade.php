@@ -29,7 +29,7 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/redacteur">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/contentieux">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-house-user"></i>
 				</div>
@@ -39,8 +39,8 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item {{ request()->is('redacteur') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur">
+			<li class="nav-item {{ request()->is('contentieux') ? 'active' : '' }}">
+				<a class="nav-link" href="/contentieux">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span>
 				</a>
@@ -54,33 +54,10 @@
 			</div>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('redacteur/sinistres') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur/sinistres">
+			<li class="nav-item {{ request()->is('contentieux/sinistres') ? 'active' : '' }}">
+				<a class="nav-link" href="/contentieux/sinistres">
 					<i class="fas fa-fw fa-table"></i>
-					<span>Sinistres</span>
-				</a>
-			</li>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('redacteur/experts') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur/experts">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Experts</span>
-				</a>
-			</li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-			<!-- Heading -->
-			<div class="sidebar-heading">
-				Courriers
-			</div>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('redacteur/courriers') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur/courriers">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Courriers de remboursement</span>
+					<span>Contentieux</span>
 				</a>
 			</li>
 

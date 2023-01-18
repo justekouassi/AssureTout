@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Expert;
 use App\Models\Utilisateur;
+use Illuminate\Support\Facades\DB;
 
 /**
  * assure la gestion d'un contrat
@@ -33,15 +34,22 @@ class ExpertController extends Controller
 			'email' => 'Cet expert est déjà inscrit',
 		]);
 	}
+	
 	/**
 	 * consulte les informations d'un expert
 	 */
 	public function consulter()
 	{
 		$id = request('id');
-		$expert = Expert::firstWhere('id', $id);
+		$requete_expert = "SELECT utilisateurs.*
+			FROM experts 
+			LEFT JOIN utilisateurs 
+			ON experts.id_utilisateur = utilisateurs.id
+			WHERE utilisateurs.id = $id";
+
+		$expert = DB::select($requete_expert);
 		return view('administrateurs.experts.expert-edit', [
-			'expert' => $expert,
+			'expert' => $expert[0],
 		]);
 	}
 
@@ -50,9 +58,9 @@ class ExpertController extends Controller
 	 */
 	public function modifier()
 	{
-		Expert::validate();
+		Utilisateur::validate();
 		$id = request('id');
-		$expert = Expert::firstWhere('id', $id);
+		$expert = Utilisateur::firstWhere('id', $id);
 		$expert->update([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),
