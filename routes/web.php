@@ -11,6 +11,7 @@ use App\Http\Controllers\ContratHabitationController;
 use App\Http\Controllers\ContratPrevoyanceController;
 use App\Http\Controllers\ContratSanteController;
 use App\Http\Controllers\ContratVehiculeController;
+use App\Http\Controllers\CourrierController;
 use App\Http\Controllers\CourtierController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\RedacteurController;
@@ -161,15 +162,28 @@ Route::group([
 ], function () {
 
 	Route::get('/redacteur', [DashboardController::class, 'redacteur'])->name('redacteur');
-	Route::get('/redacteur/sinistres', function () {
-		return view('redacteurs.sinistres');
-	});
+	// Experts
 	Route::get('/redacteur/experts', function () {
 		return view('redacteurs.experts');
+	});
+	// Sinistres
+	Route::get('/redacteur/sinistres', function () {
+		return view('redacteurs.sinistres');
 	});
 	Route::get('/redacteur/affect/{id_sinistre}', [SinistreController::class, 'affecter']);
 	Route::post('/redacteur/{id_sinistre}/choose/{id}', [SinistreController::class, 'choisir']);
 	Route::get('/redacteur/notify/{id}', [SinistreController::class, 'notifier']);
+	// Courriers
+	Route::get('/redacteur/courriers', function () {
+		return view('redacteurs.courriers');
+	});
+	Route::get('/redacteur/courriers/create', function () {
+		return view('redacteurs.courrier-create');
+	});
+	Route::post('/redacteur/courriers/create', [CourrierController::class, 'ajouter']);
+	Route::get('/redacteur/courriers/{id}/edit', [CourrierController::class, 'consulter']);
+	Route::post('/redacteur/courriers/{id}/edit', [CourrierController::class, 'modifier']);
+	Route::get('/redacteur/courriers/{id}/delete', [CourrierController::class, 'supprimer']);
 });
 
 /* opérations des téléopérateurs */

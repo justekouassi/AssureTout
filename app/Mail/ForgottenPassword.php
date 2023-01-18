@@ -17,7 +17,7 @@ class ForgottenPassword extends Mailable
 	 *
 	 * @return void
 	 */
-	public function __construct(array $user)
+	public function __construct(array $user = [])
 	{
 		$this->user = $user;
 	}
