@@ -7,6 +7,7 @@ use App\Models\Contentieux;
 use App\Models\Sinistre;
 use App\Models\Courtier;
 use App\Models\Expert;
+// use App\Models\Offre;
 use App\Models\Redacteur;
 use App\Models\Teleoperateur;
 

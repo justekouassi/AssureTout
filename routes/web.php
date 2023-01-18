@@ -43,13 +43,6 @@ Route::group([
 
 	Route::get('/admin', [DashboardController::class, 'admin'])->name('admin');
 
-	/* inscription employés */
-
-	Route::get('/signup', function () {
-		return view('signup');
-	});
-	Route::post('/signup', [ConnexionController::class, 'inscription'])->name('signup');
-
 	/* opérations de l'administrateur sur le service contentieux */
 
 	Route::get('/admin/contentieux', function () {
@@ -114,19 +107,6 @@ Route::group([
 	Route::get('/admin/teleoperateurs/{id}/edit', [TeleoperateurController::class, 'consulter']);
 	Route::post('/admin/teleoperateurs/{id}/edit', [TeleoperateurController::class, 'modifier']);
 	Route::get('/admin/teleoperateurs/{id}/delete', [TeleoperateurController::class, 'supprimer']);
-
-	/* opérations de l'administrateur sur les clients */
-
-	Route::get('/admin/clients', function () {
-		return view('administrateurs.clients.clients');
-	});
-	Route::get('/admin/clients/create', function () {
-		return view('administrateurs.clients.client-create');
-	});
-	Route::post('/admin/clients/create', [TeleoperateurController::class, 'ajouter']);
-	Route::get('/admin/clients/{id}/edit', [TeleoperateurController::class, 'consulter']);
-	Route::post('/admin/clients/{id}/edit', [TeleoperateurController::class, 'modifier']);
-	Route::get('/admin/clients/{id}/delete', [TeleoperateurController::class, 'supprimer']);
 });
 
 /* opérations du service contentieux */
@@ -149,11 +129,25 @@ Route::group([
 
 	Route::get('/courtier', [DashboardController::class, 'courtier'])->name('courtier');
 	Route::get('/courtier/sinistres', function () {
-		return view('sinistres.sinistres');
+		return view('courtiers.sinistres');
 	});
 	Route::get('/courtier/sinistres/create', function () {
-		return view('sinistres.sinistre-create');
+		return view('courtiers.sinistre-create');
 	});
+});
+
+/* opérations des experts */
+
+Route::group([
+	'middleware' => 'expert',
+], function () {
+
+	Route::get('/expert', [DashboardController::class, 'expert'])->name('expert');
+	Route::get('/expert/sinistres', function () {
+		return view('experts.sinistres');
+	});
+	Route::get('/expert/sinistres/{id}/edit', [SinistreController::class, 'consulterExpert']);
+	Route::post('/expert/sinistres/{id}/edit', [SinistreController::class, 'modifierMontant']);
 });
 
 /* opérations des rédacteurs */
@@ -164,12 +158,13 @@ Route::group([
 
 	Route::get('/redacteur', [DashboardController::class, 'redacteur'])->name('redacteur');
 	Route::get('/redacteur/sinistres', function () {
-		return view('sinistres.sinistres');
+		return view('redacteurs.sinistres');
 	});
 	Route::get('/redacteur/experts', function () {
 		return view('redacteurs.experts');
 	});
-	Route::get('/experts/{id}', [ExpertController::class, 'affecter']);
+	Route::get('/redacteur/affect/{id_sinistre}', [SinistreController::class, 'affecter']);
+	Route::post('/redacteur/{id_sinistre}/choose/{id}', [SinistreController::class, 'choisir']);
 });
 
 /* opérations des téléopérateurs */

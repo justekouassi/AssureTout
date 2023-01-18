@@ -8,7 +8,7 @@
 
 		<div style="display: flex; flex-direction:row; justify-content:space-between">
 			<h1 class="h3 mb-2 text-gray-800">Service contentieux</h1>
-			<a class="btn btn-info" href="/admin/redacteurs/create">Ajouter</a>
+			<a class="btn btn-info" href="/admin/contentieux/create">Ajouter</a>
 		</div>
 
 		<div class="card mb-4 shadow">
@@ -38,7 +38,8 @@
 						</tfoot>
 						<tbody>
 							@php
-								$contentieux = \App\Models\Contentieux::join('utilisateurs', 'contentieux.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+								// $contentieux = \App\Models\Contentieux::join('utilisateurs', 'contentieux.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+								$contentieux = \App\Models\Utilisateur::where('role', 'Contentieux')->get();
 							@endphp
 							@foreach ($contentieux as $contentieu)
 								<tr>

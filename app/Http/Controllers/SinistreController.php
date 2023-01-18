@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sinistre;
 use App\Mail\SouscriptionContrat;
+use App\Models\Expert;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -36,9 +37,36 @@ class SinistreController extends Controller
 	{
 		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
-		return view('sinistres.sinistre-edit', [
+		return view('courtiers.sinistre-edit', [
 			'sinistre' => $sinistre,
 		]);
+	}
+
+	/**
+	 * consulte les informations d'un sinistre en vue d'une éventuelle
+	 * modification
+	 */
+	public function consulterExpert()
+	{
+		$id = request('id');
+		$sinistre = Sinistre::firstWhere('id', $id);
+		return view('experts.sinistre-edit', [
+			'sinistre' => $sinistre,
+		]);
+	}
+
+	/**
+	 * modifie les attributs d'un sinistre
+	 */
+	public function modifierMontant()
+	{
+		$id = request('id');
+		$sinistre = Sinistre::firstWhere('id', $id);
+		$sinistre->update([
+			'montant' => request('montant'),
+			'statut' => 'Estimé',
+		]);
+		return view('experts.sinistres');
 	}
 
 	/**
@@ -61,6 +89,48 @@ class SinistreController extends Controller
 	}
 
 	/**
+	 * sélectionne un sinistre et recherche un expert 
+	 */
+	public function affecter()
+	{
+		$experts = Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get([
+			'utilisateurs.nom',
+			'utilisateurs.prenoms',
+			'utilisateurs.email',
+			'utilisateurs.telephone',
+			'experts.id',
+			'experts.domaine',
+		]);
+
+		$id_sinistre = request('id_sinistre');
+		return view('redacteurs.experts', [
+			'id_sinistre' => $id_sinistre,
+			'experts' => $experts,
+		]);
+	}
+
+	/**
+	 * affecte le sinistre choisi à un expert 
+	 */
+	public function choisir()
+	{
+		$sinistre = Sinistre::firstWhere('id', request('id_sinistre'));
+		$a = (int) request('id');
+		// dd($sinistre);
+		$sinistre->update([
+			'date_declaration' => '2023-01-04',
+			'montant' => 4,
+			'statut' => 'Traitement',
+			'scan' => NULL,
+			'contentieux' => 0,
+			'transcription' => 'Sinistre modifié',
+			'id_redacteur' => 2,
+			'id_expert' => 2,
+		]);
+		return back();
+	}
+
+	/**
 	 * contracte un sinistre
 	 */
 	public function contracter()
@@ -68,7 +138,7 @@ class SinistreController extends Controller
 		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
 		Mail::to('kjuste02@outlook.fr')->send(new SouscriptionContrat($sinistre));
-		return view('sinistres.sinistres');
+		return view('courtiers.sinistres');
 	}
 
 	/**

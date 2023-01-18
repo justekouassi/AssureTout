@@ -36,9 +36,6 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@php
-								$experts = \App\Models\Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*', 'experts.domaine']);
-							@endphp
 							@foreach ($experts as $expert)
 								<tr>
 									<td>{{ $expert->nom }}</td>
@@ -47,9 +44,12 @@
 									<td>{{ $expert->telephone }}</td>
 									<td>{{ $expert->domaine }}</td>
 									<td>
-										<a class="btn btn-primary btn-sm" href="/redacteur/choose/{{ $expert->id }}">
-											<i class="fa fa-pen"></i>
-										</a>
+										<form method="POST" action="/redacteur/{{ $id_sinistre }}/choose/{{ $expert->id }}">
+											@csrf
+											<button class="btn btn-primary btn-sm" type="submit">
+												<i class="fa fa-pen"></i>
+											</button>
+										</form>
 									</td>
 								</tr>
 							@endforeach

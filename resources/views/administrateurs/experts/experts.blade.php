@@ -24,6 +24,7 @@
 								<th>Prénoms</th>
 								<th>Email</th>
 								<th>Téléphone</th>
+								<th>Domaine</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -33,12 +34,20 @@
 								<th>Prénoms</th>
 								<th>Email</th>
 								<th>Téléphone</th>
+								<th>Domaine</th>
 								<th>Actions</th>
 							</tr>
 						</tfoot>
 						<tbody>
 							@php
-								$experts = \App\Models\Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+								$experts = \App\Models\Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get([
+									'utilisateurs.nom', 
+									'utilisateurs.prenoms', 
+									'utilisateurs.email', 
+									'utilisateurs.telephone', 
+									'experts.id', 
+									'experts.domaine'
+								]);
 							@endphp
 							@foreach ($experts as $expert)
 								<tr>
@@ -46,6 +55,7 @@
 									<td>{{ $expert->prenoms }}</td>
 									<td>{{ $expert->email }}</td>
 									<td>{{ $expert->telephone }}</td>
+									<td>{{ $expert->domaine }}</td>
 									<td>
 										<a class="btn btn-primary btn-sm" href="/admin/experts/{{ $expert->id }}/edit">
 											<i class="fa fa-pen"></i>

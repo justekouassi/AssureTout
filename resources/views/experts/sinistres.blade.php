@@ -42,8 +42,8 @@
 									<td>{{ $sinistre->statut }}</td>
 									<td>{{ $sinistre->contestation == 0 ? 'Non' : 'Oui' }}</td>
 									<td>
-										<a class="btn btn-primary btn-sm" href="/expert/{{ $sinistre->id }}/edit">
-											<i class="fas fa-pencil"></i>
+										<a class="btn btn-primary btn-sm" href="/expert/sinistres/{{ $sinistre->id }}/edit">
+											<i class="fas fa-pen"></i>
 										</a>
 									</td>
 								</tr>

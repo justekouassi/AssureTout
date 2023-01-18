@@ -205,7 +205,7 @@
 							<a class="nav-link dropdown-toggle" id="userDropdown" data-toggle="dropdown" href="#" role="button"
 								aria-haspopup="true" aria-expanded="false">
 								<span class="d-none d-lg-inline small mr-2 text-gray-600">{{ auth()->user()->prenoms }} {{ auth()->user()->nom }}</span>
-								<img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+								<img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
 							</a>
 							<!-- Dropdown - User Information -->
 							<div class="dropdown-menu dropdown-menu-right animated--grow-in shadow" aria-labelledby="userDropdown">

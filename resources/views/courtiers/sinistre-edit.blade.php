@@ -1,6 +1,6 @@
 @extends('courtiers.base-courtier')
 
-@section('title', 'Création d\'un nouveau sinistre')
+@section('title', "Modification d'un sinistre")
 
 @section('css')
 	<link href="/css/base.css" rel="stylesheet">

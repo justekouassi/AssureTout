@@ -9,12 +9,6 @@ use App\Models\Utilisateur;
  */
 class ConnexionController extends Controller
 {
-	// public function __construct()
-	// {
-	// 	$this->middleware('auth')->except('fonction');
-	// }
-
-
 	/**
 	 * assure la connexion d'un utilisateur
 	 */
@@ -29,9 +23,8 @@ class ConnexionController extends Controller
 			'password' => request('motdepasse'),
 		]);
 
-		// dd(auth()->user());
-		$role = auth()->user()->role;
 		if ($result) {
+			$role = auth()->user()->role;
 			switch ($role) {
 				case 'Admin':
 					return redirect('/admin');

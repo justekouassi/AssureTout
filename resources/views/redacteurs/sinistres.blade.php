@@ -43,7 +43,7 @@
 									<td>{{ $sinistre->contestation == 0 ? 'Non' : 'Oui' }}</td>
 									<td>
 										<a class="btn btn-primary btn-sm" href="/redacteur/affect/{{ $sinistre->id }}">
-											<i class="fa fa-pencil"></i>
+											<i class="fa fa-pen"></i>
 										</a>
 									</td>
 								</tr>
