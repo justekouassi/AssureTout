@@ -16,7 +16,7 @@ class Courtier
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if (auth()->user()->role == 'Courtier') {
+		if (auth()->check() && auth()->user()->role == 'Courtier') {
 			return $next($request);
 		} else {
 			abort(403, "Vous n'êtes pas autorisé à visiter cette page car vous n'êtes pas du service courrier !");

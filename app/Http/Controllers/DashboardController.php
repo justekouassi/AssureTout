@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Contentieux;
+use App\Models\Contrat;
+use App\Models\Courrier;
 use App\Models\Sinistre;
 use App\Models\Courtier;
 use App\Models\Expert;
@@ -63,12 +65,14 @@ class DashboardController extends Controller
 
 	public function redacteur()
 	{
-		$clients = Client::all();
+		$courriers = Courrier::all();
+		$contrats = Contrat::all();
 		$experts = Expert::all();
 		$sinistres = Sinistre::all();
 
 		return view('redacteurs.redacteur', [
-			'clients' => $clients,
+			'courriers' => $courriers,
+			'contrats' => $contrats,
 			'experts' => $experts,
 			'sinistres' => $sinistres,
 		]);

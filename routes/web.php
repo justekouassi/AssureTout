@@ -7,10 +7,6 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\ContentieuxController;
 use App\Http\Controllers\ContratController;
-use App\Http\Controllers\ContratHabitationController;
-use App\Http\Controllers\ContratPrevoyanceController;
-use App\Http\Controllers\ContratSanteController;
-use App\Http\Controllers\ContratVehiculeController;
 use App\Http\Controllers\CourrierController;
 use App\Http\Controllers\CourtierController;
 use App\Http\Controllers\ExpertController;
@@ -20,7 +16,7 @@ use App\Http\Controllers\SinistreController;
 
 /* Connexion */
 
-Route::get('/login', function () {
+Route::get('/', function () {
 	return view('login');
 })->name('login');
 Route::post('/login', [ConnexionController::class, 'connexion']);
@@ -184,6 +180,17 @@ Route::group([
 	Route::get('/redacteur/courriers/{id}/edit', [CourrierController::class, 'consulter']);
 	Route::post('/redacteur/courriers/{id}/edit', [CourrierController::class, 'modifier']);
 	Route::get('/redacteur/courriers/{id}/delete', [CourrierController::class, 'supprimer']);
+	// Contrats
+	Route::get('/redacteur/contrats', function () {
+		return view('redacteurs.contrats');
+	});
+	Route::get('/redacteur/contrats/create', function () {
+		return view('redacteurs.contrat-create');
+	});
+	Route::post('/redacteur/contrats/create', [ContratController::class, 'ajouter']);
+	Route::get('/redacteur/contrats/{id}/edit', [ContratController::class, 'consulter']);
+	Route::post('/redacteur/contrats/{id}/edit', [ContratController::class, 'modifier']);
+	Route::get('/redacteur/contrats/{id}/delete', [ContratController::class, 'supprimer']);
 });
 
 /* opérations des téléopérateurs */

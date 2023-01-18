@@ -16,7 +16,7 @@ class Teleoperateur
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if (auth()->user()->role == 'Téléopérateur') {
+		if (auth()->check() && auth()->user()->role == 'Téléopérateur') {
 			return $next($request);
 		} else {
 			abort(403, "Vous n'êtes pas autorisé à visiter cette page car vous n'êtes pas du service client !");

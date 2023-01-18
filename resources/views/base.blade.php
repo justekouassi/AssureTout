@@ -28,53 +28,7 @@
 		<!-- Sidebar -->
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/courtier">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-house-user"></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">AssureTout</div>
-			</a>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-			<!-- Nav Item - Dashboard -->
-			<li class="nav-item {{ request()->is('courtier') ? 'active' : '' }}">
-				<a class="nav-link" href="/courtier">
-					<i class="fas fa-fw fa-tachometer-alt"></i>
-					<span>Dashboard</span>
-				</a>
-			</li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-			<!-- Heading -->
-			<div class="sidebar-heading">
-				Employés
-			</div>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('courtier/sinistres') ? 'active' : '' }}">
-				<a class="nav-link" href="/courtier/sinistres">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Sinistres</span>
-				</a>
-			</li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-			<!-- Heading -->
-			<div class="sidebar-heading">
-				Clients
-			</div>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('courtier/clients') ? 'active' : '' }}">
-				<a class="nav-link" href="/courtier/clients">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Clients</span>
-				</a>
-			</li>
+			@yield('sidebar')
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -105,8 +59,7 @@
 					<!-- Topbar Search -->
 					<form class="d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search my-2 mr-auto">
 						<div class="input-group">
-							<input class="form-control bg-light small border-0" type="text" aria-label="Search"
-								aria-describedby="basic-addon2" placeholder="Recherche ...">
+							<input class="form-control bg-light small border-0" type="text" aria-label="Search" aria-describedby="basic-addon2" placeholder="Recherche ...">
 							<div class="input-group-append">
 								<button class="btn btn-primary" type="button">
 									<i class="fas fa-search fa-sm"></i>

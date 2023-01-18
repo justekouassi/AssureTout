@@ -16,7 +16,7 @@ class Expert
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if (auth()->user()->role == 'Expert') {
+		if (auth()->check() && auth()->user()->role == 'Expert') {
 			return $next($request);
 		} else {
 			abort(403, "Vous n'êtes pas autorisé à visiter cette page car vous n'êtes pas un expert !");
