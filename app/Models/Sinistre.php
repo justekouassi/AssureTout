@@ -12,9 +12,8 @@ class Sinistre extends Model
 		'date_declaration',
 		'montant',
 		'statut',
-		'scan',
-		'contestation',
-		'transcription',
+		'scan_courrier',
+		'scan_contestation',
 		'id_utilisateur',
 	];
 
@@ -25,10 +24,8 @@ class Sinistre extends Model
 		request()->validate([
 			'date_declaration' => ['required'],
 			'montant' => [],
-			'statut' => ['required'],
-			'scan' => [],
-			'contestation' => [],
-			'transcription' => [],
+			'scan_courrier' => [],
+			'scan_contestation' => [],
 		]);
 	}
 }

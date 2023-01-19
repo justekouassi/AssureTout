@@ -9,34 +9,21 @@
 @section('content')
 
 	<div class="container-fluid">
+		<div class="d-sm-flex align-items-center justify-content-center mb-4">
+			<h1 class="h3 mb-0 text-gray-800">Création d'un sinistre</h1>
+		</div>
+
 		<form class="form" method="POST" action="/courtier/sinistres/create">
 			@csrf
-			<div class="title">Inscription</div>
-			<div class="subtitle">Sinistres</div>
 			<div class="input-container ic2">
-				<input class="input" id="date" name="date" type="date" placeholder=" " />
+				<input class="input" id="date_declaration" name="date_declaration" type="date" placeholder=" " />
 				<div class="cut"></div>
-				<label class="placeholder" for="date">Date de déclaration</label>
+				<label class="placeholder" for="date_declaration">Date de déclaration</label>
 			</div>
 			<div class="input-container ic2">
-				<input class="input" id="montant" name="montant" type="number" placeholder=" " />
+				<input class="input" id="scan_courrier" name="scan_courrier" type="file" placeholder=" " />
 				<div class="cut"></div>
-				<label class="placeholder" for="montant">Montant de remboursement</label>
-			</div>
-			<div class="input-container ic2">
-				<input id="scan" name="scan" type="file" placeholder=" " />
-				<div class="cut cut-short"></div>
-				<label class="placeholder" for="scan">Scan<label />
-			</div>
-			<div class="input-container ic2">
-				<input id="contentieux" name="contentieux" type="checkbox" placeholder=" " />
-				<div class="cut cut-short"></div>
-				<label class="placeholder" for="contentieux">Ce sinistre est-il un contentieux ?<label />
-			</div>
-			<div class="input-container ic2">
-				<input class="input" id="transcription" name="transcription" type="text" placeholder=" " />
-				<div class="cut cut-short"></div>
-				<label class="placeholder" for="transcription">Transcription<label />
+				<label class="placeholder" for="scan_courrier">Scan courrier<label />
 			</div>
 			<button class="submit" type="submit">Enregistrer</button>
 		</form>

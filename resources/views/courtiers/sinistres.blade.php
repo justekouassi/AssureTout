@@ -8,7 +8,7 @@
 
 		<div class="d-sm-flex align-items-center justify-content-between mb-2">
 			<h1 class="h3 mb-2 text-gray-800">Sinistres</h1>
-			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/admin/redacteurs/create">Ajouter</a>
+			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/courtier/sinistres/create">Ajouter</a>
 		</div>
 
 		<div class="card mb-4 shadow">
@@ -37,7 +37,6 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@php $sinistres = \App\Models\Sinistre::all(); @endphp
 							@foreach ($sinistres as $sinistre)
 								<tr>
 									<td>{{ $sinistre->date_declaration }}</td>

@@ -1,13 +1,26 @@
+.body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+	background-color: #808097;
+}
+
+.bienvenue {
+	position: absolute;
+	top: 10px;
+	font-size: 20px;
+	text-align: center;
+	font-family: sans-serif;
+	color: aliceblue
+}
+
 .form {
 	background-color: #15172b;
 	border-radius: 20px;
 	box-sizing: border-box;
 	padding: 20px;
-	position: relative;
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-between;
-	align-items: flex-end;
+	width: 320px;
 }
 
 .title {
@@ -15,30 +28,15 @@
 	font-family: sans-serif;
 	font-size: 33px;
 	font-weight: 600;
-	margin-top: 10px;
-}
-
-.subtitle {
-	color: #eee;
-	font-family: sans-serif;
-	font-size: 16px;
-	font-weight: 600;
-	margin-top: 10px;
-}
-
-@media screen and (min-width: 40em) {
-	.form .input-container.half {
-		width: calc(50% - 1px);
-	}
+	margin-top: 30px;
+	display: flex;
+	justify-content: center
 }
 
 .input-container {
 	height: 50px;
 	position: relative;
 	width: 100%;
-}
-
-.ic2 {
 	margin-top: 25px;
 }
 
@@ -55,7 +53,7 @@
 	width: 100%;
 }
 
-.cut {
+.cut-short {
 	background-color: #15172b;
 	border-radius: 10px;
 	height: 20px;
@@ -64,11 +62,11 @@
 	top: -20px;
 	transform: translateY(0);
 	transition: transform 200ms;
-	width: 160px;
+	width: 110px;
 }
 
-.input:focus~.cut,
-.input:not(:placeholder-shown)~.cut {
+.input:focus~.cut-short,
+.input:not(:placeholder-shown)~.cut-short {
 	transform: translateY(8px);
 }
 

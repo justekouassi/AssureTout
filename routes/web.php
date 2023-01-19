@@ -117,9 +117,7 @@ Route::group([
 ], function () {
 
 	Route::get('/courtier', [DashboardController::class, 'courtier'])->name('courtier');
-	Route::get('/courtier/sinistres', function () {
-		return view('courtiers.sinistres');
-	});
+	Route::get('/courtier/sinistres', [SinistreController::class, 'viewCourtier']);
 	Route::get('/courtier/sinistres/create', function () {
 		return view('courtiers.sinistre-create');
 	});

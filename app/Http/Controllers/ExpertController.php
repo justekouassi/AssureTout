@@ -16,14 +16,15 @@ class ExpertController extends Controller
 	 */
 	public function view()
 	{
-		$experts = Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get([
-			'utilisateurs.nom', 
-			'utilisateurs.prenoms', 
-			'utilisateurs.email', 
-			'utilisateurs.telephone', 
-			'experts.id', 
-			'experts.domaine'
-		]);
+		// $experts = Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get([
+		// 	'utilisateurs.nom', 
+		// 	'utilisateurs.prenoms', 
+		// 	'utilisateurs.email', 
+		// 	'utilisateurs.telephone', 
+		// 	'experts.id', 
+		// 	'experts.domaine'
+		// ]);
+		$experts = Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*', 'experts.domaine']);
 		return view('administrateurs.experts.experts', [
 			'experts' => $experts,
 		]);

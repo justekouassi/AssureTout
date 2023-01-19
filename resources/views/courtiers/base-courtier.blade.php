@@ -240,7 +240,7 @@
 	<!-- Page level custom scripts -->
 	<script src="/js/chart-area-demo.js"></script>
 	<script src="/js/chart-pie-demo.js"></script>
-
+	<script src="/js/base.js"></script>
 </body>
 
 </html>

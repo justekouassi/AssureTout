@@ -30,7 +30,7 @@
 								<div class="h5 font-weight-bold mb-0 text-gray-800" id="redacteurs">{{ $redacteurs->count() }}</div>
 							</div>
 							<div class="col-auto">
-								<i class="fas fa-calendar fa-2x text-gray-300"></i>
+								<i class="fas fa-user-edit fa-2x text-gray-300"></i>
 							</div>
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 								<div class="h5 font-weight-bold mb-0 text-gray-800" id="experts">{{ $experts->count() }}</div>
 							</div>
 							<div class="col-auto">
-								<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+								<i class="fas fa-user-graduate fa-2x text-gray-300"></i>
 							</div>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 								<div class="h5 font-weight-bold mb-0 text-gray-800" id="courtiers">{{ $courtiers->count() }}</div>
 							</div>
 							<div class="col-auto">
-								<i class="fas fa-comments fa-2x text-gray-300"></i>
+								<i class="fas fa-user-ninja fa-2x text-gray-300"></i>
 							</div>
 						</div>
 					</div>
@@ -93,7 +93,7 @@
 								<div class="h5 font-weight-bold mb-0 text-gray-800" id="teleoperateurs">{{ $teleoperateurs->count() }}</div>
 							</div>
 							<div class="col-auto">
-								<i class="fas fa-comments fa-2x text-gray-300"></i>
+								<i class="fas fa-user-nurse fa-2x text-gray-300"></i>
 							</div>
 						</div>
 					</div>
@@ -114,7 +114,7 @@
 								<div class="h5 font-weight-bold mb-0 text-gray-800" id="contentieux">{{ $contentieux->count() }}</div>
 							</div>
 							<div class="col-auto">
-								<i class="fas fa-comments fa-2x text-gray-300"></i>
+								<i class="fas fa-user-injured fa-2x text-gray-300"></i>
 							</div>
 						</div>
 					</div>
@@ -135,7 +135,7 @@
 								<div class="h5 font-weight-bold mb-0 text-gray-800" id="clients">{{ $clients->count() }}</div>
 							</div>
 							<div class="col-auto">
-								<i class="fas fa-comments fa-2x text-gray-300"></i>
+								<i class="fas fa-users fa-2x text-gray-300"></i>
 							</div>
 						</div>
 					</div>

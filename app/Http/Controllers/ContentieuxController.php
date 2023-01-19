@@ -16,8 +16,8 @@ class ContentieuxController extends Controller
 	 */
 	public function view()
 	{
-		// $contentieux = Contentieux::join('utilisateurs', 'contentieux.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
-		$contentieux = Utilisateur::where('role', 'Contentieux')->get();
+		$contentieux = Contentieux::join('utilisateurs', 'contentieux.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+		// $contentieux = Utilisateur::where('role', 'Contentieux')->get();
 		return view('administrateurs.contentieux.contentieux', [
 			'contentieux' => $contentieux,
 		]);

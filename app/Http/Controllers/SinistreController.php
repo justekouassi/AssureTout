@@ -40,6 +40,17 @@ class SinistreController extends Controller
 	}
 
 	/**
+	 * affiche tous les éléments
+	 */
+	public function viewCourtier()
+	{
+		$sinistres = Sinistre::all();
+		return view('courtiers.sinistres', [
+			'sinistres' => $sinistres,
+		]);
+	}
+
+	/**
 	 * ajoute un sinistre dans la base de données
 	 */
 	public function ajouter()
