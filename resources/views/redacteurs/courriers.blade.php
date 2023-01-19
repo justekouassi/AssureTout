@@ -6,7 +6,7 @@
 
 	<div class="container-fluid">
 
-		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<div class="d-sm-flex align-items-center justify-content-between mb-2">
 			<h1 class="h3 mb-2 text-gray-800">Courriers</h1>
 			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/redacteur/courriers/create">Ajouter</a>
 		</div>
@@ -33,7 +33,6 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@php $courriers = \App\Models\Courrier::all(); @endphp
 							@foreach ($courriers as $courrier)
 								<tr>
 									<td>{{ $courrier->date }}</td>

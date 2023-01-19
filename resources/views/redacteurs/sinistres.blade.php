@@ -34,7 +34,6 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@php $sinistres = \App\Models\Sinistre::all(); @endphp
 							@foreach ($sinistres as $sinistre)
 								<tr>
 									<td>{{ $sinistre->date_declaration }}</td>
@@ -48,7 +47,7 @@
 											</a>
 										@else
 											@if ($sinistre->statut == 'Estimé')
-												<a class="btn btn-warning btn-sm" href="/redacteur/notify/{{ $sinistre->id }}">
+												<a class="btn btn-warning btn-sm" href="/redacteur/rembourser/{{ $sinistre->id }}">
 													<i class="fa fa-pen"></i>
 												</a>
 											@else

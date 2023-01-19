@@ -13,6 +13,33 @@ use Illuminate\Support\Facades\Mail;
 class SinistreController extends Controller
 {
 	/**
+	 * affiche tous les éléments
+	 */
+	public function viewRedacteur()
+	{
+		$sinistres = Sinistre::join('utilisateurs', 'sinistres.id_utilisateur', '=', 'utilisateurs.id')
+			->where('utilisateurs.role', 'Rédacteur')
+			->get(['sinistres.*']);
+		return view('redacteurs.sinistres', [
+			'sinistres' => $sinistres,
+		]);
+	}
+
+	/**
+	 * affiche tous les éléments
+	 */
+	public function viewExpert()
+	{
+		$sinistres = Sinistre::join('utilisateurs', 'sinistres.id_utilisateur', '=', 'utilisateurs.id')
+			->where('utilisateurs.role', 'Expert')
+			->where('sinistres.statut', 'Traitement')
+			->get(['sinistres.*']);
+		return view('experts.sinistres', [
+			'sinistres' => $sinistres,
+		]);
+	}
+
+	/**
 	 * ajoute un sinistre dans la base de données
 	 */
 	public function ajouter()
@@ -65,8 +92,9 @@ class SinistreController extends Controller
 		$sinistre->update([
 			'montant' => request('montant'),
 			'statut' => 'Estimé',
+			'id_utilisateur' => 59,
 		]);
-		return view('experts.sinistres');
+		return redirect('/expert/sinistres');
 	}
 
 	/**
@@ -115,33 +143,30 @@ class SinistreController extends Controller
 	public function choisir()
 	{
 		$sinistre = Sinistre::firstWhere('id', request('id_sinistre'));
-		$a = (int) request('id');
-		// dd($sinistre);
 		$sinistre->update([
-			'date_declaration' => '2023-01-04',
-			'montant' => 4,
-			'statut' => 'Traitement',
-			'scan' => NULL,
-			'contentieux' => 0,
-			'transcription' => 'Sinistre modifié',
-			'id_redacteur' => 2,
-			'id_expert' => 2,
+			'id_utilisateur' => request('id'),
 		]);
-		return back();
+		return redirect('/redacteur/sinistres');
 	}
 
 	/**
 	 * contracte un sinistre
 	 */
-	public function notifier()
+	public function rembourser()
 	{
-		Mail::to('kjuste02@outlook.fr')->send(new Remboursement());
 		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
+		if ($sinistre->montant > 1500) {
+			// chèque signé
+		} else {
+			// chèque non signé
+		}
+		$user = [$sinistre];
+		Mail::to('kjuste02@outlook.fr')->send(new Remboursement($user));
 		$sinistre->update([
 			'statut' => request('Remboursé'),
 		]);
-		return view('redacteurs.sinistres');
+		return redirect('/redacteur/sinistres');
 	}
 
 	/**

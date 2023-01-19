@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\DB;
 class CourrierController extends Controller
 {
 	/**
+	 * affiche tous les éléments
+	 */
+	public function view()
+	{
+		$courriers = Courrier::all();
+		return view('redacteurs.courriers', [
+			'courriers' => $courriers,
+		]);
+	}
+
+	/**
 	 * assure l'inscription d'un courrier
 	 */
 	public function ajouter()

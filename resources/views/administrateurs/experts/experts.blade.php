@@ -6,7 +6,7 @@
 
 	<div class="container-fluid">
 
-		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<div class="d-sm-flex align-items-center justify-content-between mb-2">
 			<h1 class="h3 mb-2 text-gray-800">Experts</h1>
 			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/admin/redacteurs/create">Ajouter</a>
 		</div>

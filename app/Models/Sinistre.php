@@ -15,6 +15,7 @@ class Sinistre extends Model
 		'scan',
 		'contestation',
 		'transcription',
+		'id_utilisateur',
 	];
 
 	public $timestamps = false;

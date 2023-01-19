@@ -136,9 +136,7 @@ Route::group([
 ], function () {
 
 	Route::get('/expert', [DashboardController::class, 'expert'])->name('expert');
-	Route::get('/expert/sinistres', function () {
-		return view('experts.sinistres');
-	});
+	Route::get('/expert/sinistres', [SinistreController::class, 'viewExpert']);
 	Route::get('/expert/sinistres/{id}/edit', [SinistreController::class, 'consulterExpert']);
 	Route::post('/expert/sinistres/{id}/edit', [SinistreController::class, 'modifierMontant']);
 });
@@ -150,21 +148,13 @@ Route::group([
 ], function () {
 
 	Route::get('/redacteur', [DashboardController::class, 'redacteur'])->name('redacteur');
-	// Experts
-	Route::get('/redacteur/experts', function () {
-		return view('redacteurs.experts');
-	});
 	// Sinistres
-	Route::get('/redacteur/sinistres', function () {
-		return view('redacteurs.sinistres');
-	});
+	Route::get('/redacteur/sinistres', [SinistreController::class, 'viewRedacteur']);
 	Route::get('/redacteur/affect/{id_sinistre}', [SinistreController::class, 'affecter']);
 	Route::post('/redacteur/{id_sinistre}/choose/{id}', [SinistreController::class, 'choisir']);
-	Route::get('/redacteur/notify/{id}', [SinistreController::class, 'notifier']);
+	Route::get('/redacteur/rembourser/{id}', [SinistreController::class, 'rembourser']);
 	// Courriers
-	Route::get('/redacteur/courriers', function () {
-		return view('redacteurs.courriers');
-	});
+	Route::get('/redacteur/courriers', [CourrierController::class, 'view']);
 	Route::get('/redacteur/courriers/create', function () {
 		return view('redacteurs.courrier-create');
 	});

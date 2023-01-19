@@ -14,6 +14,7 @@
 	<link href="/css/all.min.css" rel="stylesheet">
 	<link href="/css/sb-admin-2.min.css" rel="stylesheet">
 	<link href="/css/dataTables.bootstrap4.css" rel="stylesheet">
+	@yield('css')
 
 	<title>@yield('title') | {{ env('APP_NAME') }}</title>
 </head>
@@ -56,14 +57,6 @@
 				<a class="nav-link" href="/redacteur/sinistres">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Sinistres</span>
-				</a>
-			</li>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item {{ request()->is('redacteur/experts') ? 'active' : '' }}">
-				<a class="nav-link" href="/redacteur/experts">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Experts</span>
 				</a>
 			</li>
 
