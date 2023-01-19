@@ -46,10 +46,10 @@
 				<label class="placeholder" for="niveau">Niveau</label>
 			</div>
 			<div class="input-container ic2">
-				<input class="input" id="option" name="option" type="text" value="{{ $contrat->option }}"
+				<input class="input" id="option_contrat" name="option_contrat" type="text" value="{{ $contrat->option_contrat }}"
 					placeholder=" " />
 				<div class="cut"></div>
-				<label class="placeholder" for="option">Option</label>
+				<label class="placeholder" for="option_contrat">Option</label>
 			</div>
 			<button class="submit" type="submit">Enregistrer</button>
 		</form>

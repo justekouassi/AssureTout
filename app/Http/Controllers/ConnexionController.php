@@ -54,7 +54,7 @@ class ConnexionController extends Controller
 	public function deconnexion()
 	{
 		auth()->logout();
-		return redirect('/login');
+		return redirect('/');
 	}
 
 	/**
@@ -83,6 +83,6 @@ class ConnexionController extends Controller
 			'motdepasse' => bcrypt(request('motdepasse')),
 		]);
 
-		return redirect('/login');
+		return redirect('/');
 	}
 }

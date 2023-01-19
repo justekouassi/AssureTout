@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\DB;
 class RedacteurController extends Controller
 {
 	/**
+	 * affiche tous les éléments
+	 */
+	public function view()
+	{
+		$redacteurs = Redacteur::join('utilisateurs', 'redacteurs.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+		return view('administrateurs.redacteurs.redacteurs', [
+			'redacteurs' => $redacteurs,
+		]);
+	}
+
+	/**
 	 * assure l'inscription d'un utilisateur
 	 */
 	public function ajouter()

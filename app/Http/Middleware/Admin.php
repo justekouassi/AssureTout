@@ -16,7 +16,7 @@ class Admin
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if (auth()->check() && auth()->user()->role == 'Admin') {
+		if (auth()->check() && auth()->user()->role == 'Administrateur') {
 			return $next($request);
 		} else {
 			abort(403, "Vous n'êtes pas autorisé à visiter cette page car vous n'êtes pas un administrateur !");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Page introuvable | AssureTout</title>
+	<title>Page introuvable | {{ env('APP_NAME') }}</title>
 
 	<!-- Custom fonts for this template-->
 	<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +33,7 @@
 					<div class="text-center">
 						<div class="error mx-auto" data-text="404">404</div>
 						<p class="lead text-gray-800 mb-5">Page introuvable</p>
-						<a href="/login">&larr; Retour au Dashboard</a>
+						<a href="/">&larr; Retour au Dashboard</a>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
@@ -44,7 +44,7 @@
 			<footer class="sticky-footer">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; AssureTout 2022</span>
+						<span>Copyright &copy; {{ env('APP_NAME') }} {{ date('Y') }}</span>
 					</div>
 				</div>
 			</footer>

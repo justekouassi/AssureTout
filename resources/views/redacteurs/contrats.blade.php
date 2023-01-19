@@ -6,9 +6,9 @@
 
 	<div class="container-fluid">
 
-		<div style="display: flex; flex-direction:row; justify-content:space-between">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-2 text-gray-800">Contrats</h1>
-			<a class="btn btn-info" href="/redacteur/contrats/create">Ajouter</a>
+			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/redacteur/contrats/create">Ajouter</a>
 		</div>
 
 		<div class="card mb-4 shadow">
@@ -51,7 +51,10 @@
 										<a class="btn btn-primary btn-sm" href="/redacteur/contrats/{{ $contrat->id }}/edit">
 											<i class="fa fa-pen"></i>
 										</a>
-										<a class="btn btn-danger btn-sm suppression" href="/redacteur/contrats/{{ $contrat->id }}/delete">
+										<a class="btn btn-success btn-sm" href="/redacteur/contrats/{{ $contrat->id }}/souscrire">
+											<i class="fa fa-pen"></i>
+										</a>
+										<a class="btn btn-danger btn-sm suppression" href="/redacteur/contrats/{{ $contrat->id }}/refuser">
 											<i class="fa fa-trash"></i>
 										</a>
 									</td>

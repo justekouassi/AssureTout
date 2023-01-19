@@ -42,9 +42,7 @@ Route::group([
 
 	/* opérations de l'administrateur sur le service contentieux */
 
-	Route::get('/admin/contentieux', function () {
-		return view('administrateurs.contentieux.contentieux');
-	});
+	Route::get('/admin/contentieux', [ContentieuxController::class, 'view']);
 	Route::get('/admin/contentieux/create', function () {
 		return view('administrateurs.contentieux.contentieux-create');
 	});
@@ -55,9 +53,7 @@ Route::group([
 
 	/* opérations de l'administrateur sur les courtiers */
 
-	Route::get('/admin/courtiers', function () {
-		return view('administrateurs.courtiers.courtiers');
-	});
+	Route::get('/admin/courtiers', [CourtierController::class, 'view']);
 	Route::get('/admin/courtiers/create', function () {
 		return view('administrateurs.courtiers.courtier-create');
 	});
@@ -68,9 +64,7 @@ Route::group([
 
 	/* opérations de l'administrateur sur les experts */
 
-	Route::get('/admin/experts', function () {
-		return view('administrateurs.experts.experts');
-	});
+	Route::get('/admin/experts', [ExpertController::class, 'view']);
 	Route::get('/admin/experts/create', function () {
 		return view('administrateurs.experts.expert-create');
 	});
@@ -81,9 +75,7 @@ Route::group([
 
 	/* opérations de l'administrateur sur les rédacteurs */
 
-	Route::get('/admin/redacteurs', function () {
-		return view('administrateurs.redacteurs.redacteurs');
-	});
+	Route::get('/admin/redacteurs', [RedacteurController::class, 'view']);
 	Route::get('/admin/redacteurs/create', function () {
 		return view('administrateurs.redacteurs.redacteur-create');
 	});
@@ -94,9 +86,7 @@ Route::group([
 
 	/* opérations de l'administrateur sur le service clients */
 
-	Route::get('/admin/teleoperateurs', function () {
-		return view('administrateurs.teleoperateurs.teleoperateurs');
-	});
+	Route::get('/admin/teleoperateurs', [TeleoperateurController::class, 'view']);
 	Route::get('/admin/teleoperateurs/create', function () {
 		return view('administrateurs.teleoperateurs.teleoperateur-create');
 	});
@@ -115,6 +105,8 @@ Route::group([
 	Route::get('/contentieux', function () {
 		return view('service_contentieux.contentieux');
 	});
+	Route::get('/contentieux/contentieux/{id}/edit', [SinistreController::class, 'consulterContentieux']);
+	Route::post('/contentieux/contentieux/{id}/edit', [SinistreController::class, 'contesterMontant']);
 	Route::get('/contentieux/{id}', [ContentieuxController::class, 'consulter']);
 });
 
@@ -190,7 +182,8 @@ Route::group([
 	Route::post('/redacteur/contrats/create', [ContratController::class, 'ajouter']);
 	Route::get('/redacteur/contrats/{id}/edit', [ContratController::class, 'consulter']);
 	Route::post('/redacteur/contrats/{id}/edit', [ContratController::class, 'modifier']);
-	Route::get('/redacteur/contrats/{id}/delete', [ContratController::class, 'supprimer']);
+	Route::get('/redacteur/contrats/{id}/souscrire', [ContratController::class, 'souscrire']);
+	Route::get('/redacteur/contrats/{id}/refuser', [ContratController::class, 'refuser']);
 });
 
 /* opérations des téléopérateurs */

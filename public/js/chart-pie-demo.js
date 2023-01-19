@@ -14,19 +14,18 @@ var teleoperateurs = parseInt(document.querySelector('#teleoperateurs').innerHTM
 var myPieChart = new Chart(ctx, {
 	type: 'doughnut',
 	data: {
-		labels: ['Contentieux', 'Courtiers', 'Experts', 'Redacteurs', 'Service clientèle'],
+		labels: ['Service contentieux', 'Courtiers', 'Experts', 'Rédacteurs', 'Service clientèle'],
 		datasets: [{
-			// data: [contentieux, courtiers, experts, redacteurs, teleoperateurs],
-			data: [20, 10, 10, 20, 40],
-			backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#4e73df', '#1cc88a'],
-			hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#2e59d9', '#17a673'],
+			data: [contentieux, courtiers, experts, redacteurs, teleoperateurs],
+			backgroundColor: ['#858796', '#f6c23e', '#36b9cc', '#033e8c', '#e74a3b'],
+			hoverBackgroundColor: ['#666666', '#d78613', '#2c9faf', '#2e59d9', '#b54a3f'],
 			hoverBorderColor: 'rgba(234, 236, 244, 1)',
 		}],
 	},
 	options: {
 		maintainAspectRatio: false,
 		tooltips: {
-			backgroundColor: 'rgb(255,255,255)',
+			backgroundColor: '#fff',
 			bodyFontColor: '#858796',
 			borderColor: '#dddfeb',
 			borderWidth: 1,

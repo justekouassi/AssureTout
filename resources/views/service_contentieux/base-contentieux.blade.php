@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Custom fonts for this template -->
+	<link href="/img/favicon_io/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+	<link type="image/png" href="/img/favicon_io/favicon-32x32.png" rel="icon" sizes="32x32">
+	<link type="image/png" href="/img/favicon_io/favicon-16x16.png" rel="icon" sizes="16x16">
+	<link href="/site.webmanifest" rel="manifest">
+
 	<link href="/css/all.min.css" rel="stylesheet">
-	<link
-		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-		rel="stylesheet">
-	<!-- Custom styles for this template -->
 	<link href="/css/sb-admin-2.min.css" rel="stylesheet">
-	<!-- Custom styles for this page -->
 	<link href="/css/dataTables.bootstrap4.css" rel="stylesheet">
 	@yield('css')
 
@@ -33,7 +32,7 @@
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-house-user"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">AssureTout</div>
+				<div class="sidebar-brand-text mx-3">{{ env('APP_NAME') }}</div>
 			</a>
 
 			<!-- Divider -->
@@ -90,7 +89,7 @@
 					<!-- Topbar Search -->
 					<form class="d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search my-2 mr-auto">
 						<div class="input-group">
-							<input class="form-control bg-light small border-0" type="text" aria-label="Search"
+							<input class="form-control bg-light small border-0" type="search" aria-label="Search"
 								aria-describedby="basic-addon2" placeholder="Recherche ...">
 							<div class="input-group-append">
 								<button class="btn btn-primary" type="button">
@@ -137,8 +136,8 @@
 						<li class="nav-item dropdown no-arrow">
 							<a class="nav-link dropdown-toggle" id="userDropdown" data-toggle="dropdown" href="#" role="button"
 								aria-haspopup="true" aria-expanded="false">
-								<span class="d-none d-lg-inline small mr-2 text-gray-600">{{ auth()->user()->prenoms }} {{ auth()->user()->nom }}</span>
-								<img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+								<span class="d-none d-lg-inline small mr-4 text-gray-600">{{ auth()->user()->prenoms }} {{ auth()->user()->nom }}</span>
+								<img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
 							</a>
 							<!-- Dropdown - User Information -->
 							<div class="dropdown-menu dropdown-menu-right animated--grow-in shadow" aria-labelledby="userDropdown">
@@ -163,7 +162,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright my-auto text-center">
-						<span>Copyright &copy; AssureTout 2022</span>
+						<span>Copyright &copy; {{ env('APP_NAME') }} {{ date('Y') }}</span>
 					</div>
 				</div>
 			</footer>

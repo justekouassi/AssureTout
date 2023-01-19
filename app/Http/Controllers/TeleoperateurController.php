@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\DB;
 class TeleoperateurController extends Controller
 {
 	/**
+	 * affiche tous les éléments
+	 */
+	public function view()
+	{
+		$teleoperateurs = Teleoperateur::join('utilisateurs', 'teleoperateurs.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+		return view('administrateurs.teleoperateurs.teleoperateurs', [
+			'teleoperateurs' => $teleoperateurs,
+		]);
+	}
+
+	/**
 	 * assure l'inscription d'un utilisateur
 	 */
 	public function ajouter()

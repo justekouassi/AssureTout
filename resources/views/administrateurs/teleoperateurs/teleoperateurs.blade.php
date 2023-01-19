@@ -6,9 +6,11 @@
 
 	<div class="container-fluid">
 
-		<div style="display: flex; flex-direction:row; justify-content:space-between">
-			<h1 class="h3 mb-2 text-gray-800">Service client</h1>
-			<a class="btn btn-info" href="/admin/teleoperateurs/create">Ajouter</a>
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">Service client</h1>
+			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/admin/teleoperateurs/create">
+				Ajouter
+			</a>
 		</div>
 
 		<div class="card mb-4 shadow">
@@ -37,9 +39,6 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@php
-								$teleoperateurs = \App\Models\Teleoperateur::join('utilisateurs', 'teleoperateurs.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
-							@endphp
 							@foreach ($teleoperateurs as $teleoperateur)
 								<tr>
 									<td>{{ $teleoperateur->nom }}</td>

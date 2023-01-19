@@ -12,6 +12,18 @@ use Illuminate\Support\Facades\DB;
 class ContentieuxController extends Controller
 {
 	/**
+	 * affiche tous les éléments
+	 */
+	public function view()
+	{
+		// $contentieux = Contentieux::join('utilisateurs', 'contentieux.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+		$contentieux = Utilisateur::where('role', 'Contentieux')->get();
+		return view('administrateurs.contentieux.contentieux', [
+			'contentieux' => $contentieux,
+		]);
+	}
+
+	/**
 	 * assure l'inscription d'un utilisateur
 	 */
 	public function ajouter()
@@ -34,7 +46,7 @@ class ContentieuxController extends Controller
 			'email' => 'Cet contentieux est déjà inscrit',
 		]);
 	}
-	
+
 	/**
 	 * consulte les informations d'un contentieux
 	 */

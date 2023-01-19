@@ -12,7 +12,25 @@ use Illuminate\Support\Facades\DB;
 class ExpertController extends Controller
 {
 	/**
-	 * assure l'inscription d'un utilisateur
+	 * affiche tous les éléments
+	 */
+	public function view()
+	{
+		$experts = Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get([
+			'utilisateurs.nom', 
+			'utilisateurs.prenoms', 
+			'utilisateurs.email', 
+			'utilisateurs.telephone', 
+			'experts.id', 
+			'experts.domaine'
+		]);
+		return view('administrateurs.experts.experts', [
+			'experts' => $experts,
+		]);
+	}
+
+	/**
+	 * crée un nouvel expert
 	 */
 	public function ajouter()
 	{

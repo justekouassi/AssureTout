@@ -6,9 +6,9 @@
 
 	<div class="container-fluid">
 
-		<div style="display: flex; flex-direction:row; justify-content:space-between">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-2 text-gray-800">Courtiers</h1>
-			<a class="btn btn-info" href="/admin/redacteurs/create">Ajouter</a>
+			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/admin/courtiers/create">Ajouter</a>
 		</div>
 
 		<div class="card mb-4 shadow">
@@ -37,9 +37,6 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@php
-								$courtiers = \App\Models\Courtier::join('utilisateurs', 'courtiers.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
-							@endphp
 							@foreach ($courtiers as $courtier)
 								<tr>
 									<td>{{ $courtier->nom }}</td>

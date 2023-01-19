@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RefusDevis;
+use App\Mail\SouscriptionContrat;
 use App\Models\Contrat;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * assure la gestion d'un contrat
@@ -62,6 +65,34 @@ class ContratController extends Controller
 			'option_contrat' => request('option_contrat'),
 		]);
 		return back();
+	}
+
+	/**
+	 * contracte un contrat
+	 */
+	public function souscrire()
+	{
+		Mail::to('kjuste02@outlook.fr')->send(new SouscriptionContrat());
+		$id = request('id');
+		$contrat = Contrat::firstWhere('id', $id);
+		$contrat->update([
+			'statut' => 'Validé',
+		]);
+		return view('redacteurs.contrats');
+	}
+
+	/**
+	 * contracte un contrat
+	 */
+	public function refuser()
+	{
+		Mail::to('kjuste02@outlook.fr')->send(new RefusDevis());
+		$id = request('id');
+		$contrat = Contrat::firstWhere('id', $id);
+		$contrat->update([
+			'statut' => 'Refusé',
+		]);
+		return view('redacteurs.contrats');
 	}
 
 	/**

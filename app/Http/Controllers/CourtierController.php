@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\DB;
 class CourtierController extends Controller
 {
 	/**
+	 * affiche tous les éléments
+	 */
+	public function view()
+	{
+		$courtiers = Courtier::join('utilisateurs', 'courtiers.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+		return view('administrateurs.courtiers.courtiers', [
+			'courtiers' => $courtiers,
+		]);
+	}
+
+	/**
 	 * assure l'inscription d'un utilisateur
 	 */
 	public function ajouter()
