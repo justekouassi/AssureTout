@@ -47,7 +47,7 @@
 										<a class="btn btn-primary btn-sm" href="/admin/redacteurs/{{ $redacteur->id }}/edit">
 											<i class="fa fa-pen"></i>
 										</a>
-										<a class="btn btn-danger btn-sm" href="/admin/redacteurs/{{ $redacteur->id }}/delete">
+										<a class="btn btn-danger btn-sm suppression" href="/admin/redacteurs/{{ $redacteur->id }}/delete">
 											<i class="fa fa-trash"></i>
 										</a>
 									</td>

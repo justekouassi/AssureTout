@@ -25,6 +25,9 @@
 								<th>Date de fin</th>
 								<th>Prix</th>
 								<th>Statut</th>
+								<th>Type</th>
+								<th>Niveau</th>
+								<th>Option</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -35,11 +38,13 @@
 								<th>Date de fin</th>
 								<th>Prix</th>
 								<th>Statut</th>
+								<th>Type</th>
+								<th>Niveau</th>
+								<th>Option</th>
 								<th>Actions</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							@php $contrats = \App\Models\Contrat::all(); @endphp
 							@foreach ($contrats as $contrat)
 								<tr>
 									<td>{{ $contrat->date_creation }}</td>
@@ -47,6 +52,9 @@
 									<td>{{ $contrat->date_fin }}</td>
 									<td>{{ $contrat->prix }}</td>
 									<td>{{ $contrat->statut }}</td>
+									<td>{{ $contrat->type }}</td>
+									<td>{{ $contrat->niveau }}</td>
+									<td>{{ $contrat->option_contrat }}</td>
 									<td>
 										<a class="btn btn-primary btn-sm" href="/redacteur/contrats/{{ $contrat->id }}/edit">
 											<i class="fa fa-pen"></i>

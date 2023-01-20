@@ -7,7 +7,7 @@ use App\Models\Utilisateur;
 use Illuminate\Support\Facades\DB;
 
 /**
- * assure la gestion d'un contrat
+ * assure la gestion d'un expert
  */
 class ExpertController extends Controller
 {
@@ -16,14 +16,6 @@ class ExpertController extends Controller
 	 */
 	public function view()
 	{
-		// $experts = Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get([
-		// 	'utilisateurs.nom', 
-		// 	'utilisateurs.prenoms', 
-		// 	'utilisateurs.email', 
-		// 	'utilisateurs.telephone', 
-		// 	'experts.id', 
-		// 	'experts.domaine'
-		// ]);
 		$experts = Expert::join('utilisateurs', 'experts.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*', 'experts.domaine']);
 		return view('administrateurs.experts.experts', [
 			'experts' => $experts,
@@ -47,6 +39,7 @@ class ExpertController extends Controller
 
 		Expert::create([
 			'id_utilisateur' => $utilisateur->id,
+			'domaine' => request('domaine'),
 		]);
 
 		return back()->withInput()->withErrors([
@@ -60,7 +53,7 @@ class ExpertController extends Controller
 	public function consulter()
 	{
 		$id = request('id');
-		$requete_expert = "SELECT utilisateurs.*
+		$requete_expert = "SELECT utilisateurs.*, experts.domaine
 			FROM experts 
 			LEFT JOIN utilisateurs 
 			ON experts.id_utilisateur = utilisateurs.id
@@ -79,13 +72,17 @@ class ExpertController extends Controller
 	{
 		Utilisateur::validate();
 		$id = request('id');
-		$expert = Utilisateur::firstWhere('id', $id);
-		$expert->update([
+		$utilisateur = Utilisateur::firstWhere('id', $id);
+		$utilisateur->update([
 			'nom' => request('nom'),
 			'prenoms' => request('prenoms'),
 			'email' => request('email'),
 			'motdepasse' => bcrypt(request('motdepasse')),
 			'telephone' => request('telephone'),
+		]);
+		$expert = Expert::firstWhere('id_utilisateur', $id);
+		$expert->update([
+			'domaine' => request('domaine'),
 		]);
 		return back();
 	}

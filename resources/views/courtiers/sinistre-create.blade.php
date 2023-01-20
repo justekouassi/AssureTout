@@ -13,7 +13,7 @@
 			<h1 class="h3 mb-0 text-gray-800">Création d'un sinistre</h1>
 		</div>
 
-		<form class="form" method="POST" action="/courtier/sinistres/create">
+		<form class="form" method="POST" action="/courtier/sinistres/create" enctype="multipart/form-data">
 			@csrf
 			<div class="input-container ic2">
 				<input class="input" id="date_declaration" name="date_declaration" type="date" placeholder=" " />
@@ -21,7 +21,7 @@
 				<label class="placeholder" for="date_declaration">Date de déclaration</label>
 			</div>
 			<div class="input-container ic2">
-				<input class="input" id="scan_courrier" name="scan_courrier" type="file" placeholder=" " />
+				<input class="input" id="scan_courrier" name="scan_courrier" type="file" placeholder=" " accept="image/*" />
 				<div class="cut"></div>
 				<label class="placeholder" for="scan_courrier">Scan courrier<label />
 			</div>

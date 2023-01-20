@@ -20,29 +20,35 @@
 					<table class="table-bordered table" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
+								<th>ID</th>
 								<th>Date de déclaration</th>
 								<th>Montant</th>
 								<th>Statut</th>
 								<th>Contestation</th>
+								<th>Chargé</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
+								<th>ID</th>
 								<th>Date de déclaration</th>
 								<th>Montant</th>
 								<th>Statut</th>
 								<th>Contestation</th>
+								<th>Chargé</th>
 								<th>Actions</th>
 							</tr>
 						</tfoot>
 						<tbody>
 							@foreach ($sinistres as $sinistre)
 								<tr>
+									<td>{{ $sinistre->id }}</td>
 									<td>{{ $sinistre->date_declaration }}</td>
 									<td>{{ $sinistre->montant }}</td>
 									<td>{{ $sinistre->statut }}</td>
-									<td>{{ $sinistre->contestation == 0 ? 'Non' : 'Oui' }}</td>
+									<td>{{ $sinistre->scan_contestation == null ? 'Non' : 'Oui' }}</td>
+									<td>{{ $sinistre->role }} {{ $sinistre->nom }} {{ $sinistre->prenoms }}</td>
 									<td>
 										<a class="btn btn-primary btn-sm" href="/courtier/sinistres/{{ $sinistre->id }}/edit">
 											<i class="fa fa-pen"></i>

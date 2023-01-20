@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Mail;
 class ContratController extends Controller
 {
 	/**
+	 * affiche tous les éléments
+	 */
+	public function view()
+	{
+		// $contrats = Contrat::join('utilisateurs', 'contrat.id_utilisateur', '=', 'utilisateurs.id')->get(['utilisateurs.*']);
+		$contrats = Contrat::all();
+		return view('redacteurs.contrats', [
+			'contrats' => $contrats,
+		]);
+	}
+
+	/**
 	 * crée un nouveau contrat
 	 */
 	public function ajouter()
@@ -23,7 +35,6 @@ class ContratController extends Controller
 			'date_debut' => request('date_debut'),
 			'date_fin' => request('date_fin'),
 			'prix' => request('prix'),
-			'statut' => request('statut'),
 			'type' => request('type'),
 			'niveau' => request('niveau'),
 			'option_contrat' => request('option_contrat'),
@@ -59,7 +70,6 @@ class ContratController extends Controller
 			'date_debut' => request('date_debut'),
 			'date_fin' => request('date_fin'),
 			'prix' => request('prix'),
-			'statut' => request('statut'),
 			'type' => request('type'),
 			'niveau' => request('niveau'),
 			'option_contrat' => request('option_contrat'),

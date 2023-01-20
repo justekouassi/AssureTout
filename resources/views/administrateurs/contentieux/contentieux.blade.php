@@ -47,7 +47,7 @@
 										<a class="btn btn-primary btn-sm" href="/admin/contentieux/{{ $contentieu->id }}/edit">
 											<i class="fa fa-pen"></i>
 										</a>
-										<a class="btn btn-danger btn-sm" href="/admin/contentieux/{{ $contentieu->id }}/delete">
+										<a class="btn btn-danger btn-sm suppression" href="/admin/contentieux/{{ $contentieu->id }}/delete">
 											<i class="fa fa-trash"></i>
 										</a>
 									</td>

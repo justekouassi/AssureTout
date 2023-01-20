@@ -49,7 +49,7 @@
 										<a class="btn btn-primary btn-sm" href="/admin/teleoperateurs/{{ $teleoperateur->id }}/edit">
 											<i class="fa fa-pen"></i>
 										</a>
-										<a class="btn btn-danger btn-sm" href="/admin/teleoperateurs/{{ $teleoperateur->id }}/delete">
+										<a class="btn btn-danger btn-sm suppression" href="/admin/teleoperateurs/{{ $teleoperateur->id }}/delete">
 											<i class="fa fa-trash"></i>
 										</a>
 									</td>

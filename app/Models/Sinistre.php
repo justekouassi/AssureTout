@@ -22,7 +22,7 @@ class Sinistre extends Model
 	public static function validate()
 	{
 		request()->validate([
-			'date_declaration' => ['required'],
+			'date_declaration' => [],
 			'montant' => [],
 			'scan_courrier' => [],
 			'scan_contestation' => [],

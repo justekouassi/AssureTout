@@ -46,7 +46,7 @@ class DashboardController extends Controller
 	{
 		$clients = Client::all();
 		$sinistres = Sinistre::all();
-		$contentieux = Sinistre::where('contentieux', 1);
+		$contentieux = Sinistre::all();
 
 		return view('courtiers.courtier', [
 			'clients' => $clients,

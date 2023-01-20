@@ -20,7 +20,6 @@
 								<th>Date de déclaration</th>
 								<th>Montant</th>
 								<th>Statut</th>
-								<th>Contestation</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -29,7 +28,6 @@
 								<th>Date de déclaration</th>
 								<th>Montant</th>
 								<th>Statut</th>
-								<th>Contestation</th>
 								<th>Actions</th>
 							</tr>
 						</tfoot>
@@ -39,7 +37,6 @@
 									<td>{{ $sinistre->date_declaration }}</td>
 									<td>{{ $sinistre->montant }}</td>
 									<td>{{ $sinistre->statut }}</td>
-									<td>{{ $sinistre->contestation == 0 ? 'Non' : 'Oui' }}</td>
 									<td>
 										@if ($sinistre->statut == 'Traitement')
 											<a class="btn btn-primary btn-sm" href="/redacteur/affect/{{ $sinistre->id }}">

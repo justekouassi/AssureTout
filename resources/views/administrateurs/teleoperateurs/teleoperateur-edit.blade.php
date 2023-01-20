@@ -48,7 +48,7 @@
 				<div class="cut"></div>
 				<label class="placeholder" for="confirmation">Confirmation mot de passe<label />
 			</div>
-			<button class="submit" type="submit">Enregistrer</button>
+			<button class="submit modification" type="submit">Enregistrer</button>
 		</form>
 	</div>
 

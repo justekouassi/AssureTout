@@ -161,9 +161,7 @@ Route::group([
 	Route::post('/redacteur/courriers/{id}/edit', [CourrierController::class, 'modifier']);
 	Route::get('/redacteur/courriers/{id}/delete', [CourrierController::class, 'supprimer']);
 	// Contrats
-	Route::get('/redacteur/contrats', function () {
-		return view('redacteurs.contrats');
-	});
+	Route::get('/redacteur/contrats', [ContratController::class, 'view']);
 	Route::get('/redacteur/contrats/create', function () {
 		return view('redacteurs.contrat-create');
 	});

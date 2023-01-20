@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Sinistre;
 use App\Mail\Remboursement;
+use App\Models\Contentieux;
 use App\Models\Expert;
+use App\Models\Redacteur;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -44,7 +46,13 @@ class SinistreController extends Controller
 	 */
 	public function viewCourtier()
 	{
-		$sinistres = Sinistre::all();
+		$sinistres = Sinistre::join('utilisateurs', 'sinistres.id_utilisateur', '=', 'utilisateurs.id')->get([
+			'sinistres.*', 
+			'utilisateurs.nom', 
+			'utilisateurs.prenoms',
+			'utilisateurs.role',
+		]);
+		// $sinistres = Sinistre::all();
 		return view('courtiers.sinistres', [
 			'sinistres' => $sinistres,
 		]);
@@ -56,13 +64,12 @@ class SinistreController extends Controller
 	public function ajouter()
 	{
 		Sinistre::validate();
+		$redacteur = Redacteur::inRandomOrder()->first();
 		Sinistre::create([
 			'date_declaration' => request('date_declaration'),
-			'montant' => request('montant'),
-			'statut' => request('statut'),
-			'scan' => request('scan'),
-			'contestation' => request('contestation'),
-			'transcription' => request('transcription'),
+			'statut' => 'Traitement',
+			'scan_courrier' => request('scan_courrier')->store('courriers', 'public'),
+			'id_utilisateur' => $redacteur->id_utilisateur,
 		]);
 		return back();
 	}
@@ -100,10 +107,11 @@ class SinistreController extends Controller
 	{
 		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
+		$redacteur = Redacteur::inRandomOrder()->first();
 		$sinistre->update([
 			'montant' => request('montant'),
 			'statut' => 'Estimé',
-			'id_utilisateur' => 59,
+			'id_utilisateur' => $redacteur->id_utilisateur,
 		]);
 		return redirect('/expert/sinistres');
 	}
@@ -116,13 +124,13 @@ class SinistreController extends Controller
 		Sinistre::validate();
 		$id = request('id');
 		$sinistre = Sinistre::firstWhere('id', $id);
+		$contentieux = Contentieux::inRandomOrder()->first();
 		$sinistre->update([
 			'date_declaration' => request('date_declaration'),
 			'montant' => request('montant'),
-			'statut' => request('statut'),
-			'scan' => request('scan'),
-			'contestation' => request('contestation'),
-			'transcription' => request('transcription'),
+			'scan_courrier' => request('scan_courrier')->store('courriers', 'public'),
+			'scan_contestation' => request('scan_contestation')->store('courriers', 'public'),
+			'id_utilisateur' => $contentieux->id_utilisateur,
 		]);
 		return back();
 	}
@@ -175,7 +183,7 @@ class SinistreController extends Controller
 		$user = [$sinistre];
 		Mail::to('kjuste02@outlook.fr')->send(new Remboursement($user));
 		$sinistre->update([
-			'statut' => request('Remboursé'),
+			'statut' => 'Remboursé',
 		]);
 		return redirect('/redacteur/sinistres');
 	}

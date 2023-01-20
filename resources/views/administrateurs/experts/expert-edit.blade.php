@@ -20,8 +20,7 @@
 				<label class="placeholder" for="nom">Nom</label>
 			</div>
 			<div class="input-container half ic2">
-				<input class="input" id="prenoms" name="prenoms" type="text" value="{{ $expert->prenoms }}"
-					placeholder=" " />
+				<input class="input" id="prenoms" name="prenoms" type="text" value="{{ $expert->prenoms }}" placeholder=" " />
 				<div class="cut"></div>
 				<label class="placeholder" for="prenoms">Prénoms</label>
 			</div>
@@ -48,7 +47,12 @@
 				<div class="cut"></div>
 				<label class="placeholder" for="confirmation">Confirmation mot de passe<label />
 			</div>
-			<button class="submit" type="submit">Enregistrer</button>
+			<div class="input-container ic2">
+				<input class="input" id="domaine" name="domaine" type="text" placeholder=" " value="{{ $expert->domaine }}" />
+				<div class="cut"></div>
+				<label class="placeholder" for="domaine">Domaine d'expertise</label>
+			</div>
+			<button class="submit modification" type="submit">Enregistrer</button>
 		</form>
 	</div>
 

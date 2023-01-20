@@ -8,7 +8,7 @@
 
 		<div class="d-sm-flex align-items-center justify-content-between mb-2">
 			<h1 class="h3 mb-2 text-gray-800">Experts</h1>
-			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/admin/redacteurs/create">Ajouter</a>
+			<a class="d-none d-sm-inline btn btn-sm btn-primary shadow-sm" href="/admin/experts/create">Ajouter</a>
 		</div>
 
 		<div class="card mb-4 shadow">
@@ -50,7 +50,7 @@
 										<a class="btn btn-primary btn-sm" href="/admin/experts/{{ $expert->id }}/edit">
 											<i class="fa fa-pen"></i>
 										</a>
-										<a class="btn btn-danger btn-sm" href="/admin/experts/{{ $expert->id }}/delete">
+										<a class="btn btn-danger btn-sm suppression" href="/admin/experts/{{ $expert->id }}/delete">
 											<i class="fa fa-trash"></i>
 										</a>
 									</td>
