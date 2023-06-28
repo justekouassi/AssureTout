@@ -21,6 +21,8 @@ Route::get('/', function () {
 })->name('login');
 Route::post('/login', [ConnexionController::class, 'connexion']);
 
+Route::get('/path', [ClassController::class, 'method'])->name('name');
+
 /* déconnexion */
 
 Route::get('/logout', [ConnexionController::class, 'deconnexion']);

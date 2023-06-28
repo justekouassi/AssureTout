@@ -12,6 +12,7 @@ use App\Models\Expert;
 // use App\Models\Offre;
 use App\Models\Redacteur;
 use App\Models\Teleoperateur;
+use App\Models\Utilisateur;
 
 class DashboardController extends Controller
 {
@@ -81,7 +82,7 @@ class DashboardController extends Controller
 	public function teleoperateur()
 	{
 		// $offres = Offre::all();
-		$clients = Client::all();
+		$clients = Utilisateur::where('role', 'Client')->get();
 		$sinistres = Sinistre::all();
 
 		return view('teleoperateurs.teleoperateur', [

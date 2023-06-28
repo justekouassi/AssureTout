@@ -42,7 +42,7 @@
 									<td>{{ $client->email }}</td>
 									<td>{{ $client->telephone }}</td>
 									<td>
-										<a class="btn btn-primary btn-sm" href="/teleoperateur/client/{{ $client->id }}">
+										<a class="btn btn-primary btn-sm" href="/teleoperateur/clients/{{ $client->id }}">
 											<i class="fa fa-pen"></i>
 										</a>
 									</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Mail\InfosClient;
+use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -29,7 +30,7 @@ class ClientController extends Controller
 	public function consulter()
 	{
 		$id = request('id');
-		$client = Client::firstWhere('id', $id);
+		$client = Utilisateur::where('role', 'Client')->where('id', $id)->first();
 		return view('teleoperateurs.client-view', [
 			'client' => $client,
 		]);

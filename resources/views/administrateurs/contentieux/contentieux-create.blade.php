@@ -35,12 +35,12 @@
 				<label class="placeholder" for="telephone">Téléphone</label>
 			</div>
 			<div class="input-container half ic2">
-				<input class="input" id="motdepasse" name="motdepasse" type="text" placeholder=" " />
+				<input class="input" id="motdepasse" name="motdepasse" type="password" placeholder=" " />
 				<div class="cut"></div>
 				<label class="placeholder" for="motdepasse">Mot de passe</label>
 			</div>
 			<div class="input-container half ic2">
-				<input class="input" id="confirmation" name="confirmation" type="text" placeholder=" " />
+				<input class="input" id="confirmation" name="confirmation" type="password" placeholder=" " />
 				<div class="cut"></div>
 				<label class="placeholder" for="confirmation">Confirmation</label>
 			</div>
